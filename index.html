@@ -54,12 +54,20 @@
       position: relative;
     }
 
-    .portada .logo {
-      width: 130px;
-      height: 130px;
+    /* Placa blanca redondeada que contiene el logo corporativo */
+    .logo-placa {
+      background: var(--blanco);
+      border-radius: 18px;
+      padding: 18px 26px;
+      display: inline-block;
+      margin: 0 auto 24px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .logo-placa img {
       display: block;
-      margin: 0 auto 22px;
-      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.25));
+      width: 190px;
+      height: auto;
     }
 
     .portada h1 {
@@ -115,6 +123,9 @@
     }
 
     .tarjeta {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
       background: var(--blanco);
       border: 1px solid var(--gris-claro);
       border-top: 5px solid var(--azul);
@@ -172,6 +183,23 @@
 
     .tarjeta ul li:last-child { border-bottom: none; }
 
+    /* Botón "Ver más" al pie de cada ventana */
+    .tarjeta .ver-mas {
+      margin-top: 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--blanco);
+      background: var(--azul);
+      padding: 9px 26px;
+      border-radius: 6px;
+      transition: background 0.18s ease;
+    }
+
+    .tarjeta:hover .ver-mas { background: var(--azul-oscuro); }
+
     /* Viñeta cuadrada azul, en el estilo geométrico del logo */
     .tarjeta ul li::before {
       content: "";
@@ -211,17 +239,10 @@
        PORTADA · imagen de la empresa
        ============================================================ -->
   <header class="portada">
-    <!-- Logo corporativo (SVG, editable) -->
-    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo MANT & SERVICE">
-      <rect width="100" height="100" rx="16" fill="#1B75BC" stroke="#FFFFFF" stroke-width="3"/>
-      <g fill="#FFFFFF">
-        <rect x="24" y="46" width="12" height="26"/>
-        <rect x="40" y="34" width="12" height="38"/>
-        <rect x="60" y="46" width="18" height="26"/>
-        <polygon points="58,46 69,36 80,46"/>
-      </g>
-      <path d="M20 74 Q50 86 82 68" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.85"/>
-    </svg>
+    <!-- Logo corporativo (imagen oficial incrustada) -->
+    <div class="logo-placa">
+      <img src="data:image/jpeg;base64,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" alt="Logo MANT & SERVICE">
+    </div>
 
     <h1>MANT <span class="amp">&amp;</span> SERVICE</h1>
     <p class="lema">Calama · Región de Antofagasta</p>
@@ -241,7 +262,7 @@
     <div class="tarjetas">
 
       <!-- ===== VENTANA 1 · MANTENCIÓN DE VEHÍCULOS ===== -->
-      <article class="tarjeta">
+      <a class="tarjeta" href="mantencion-vehiculos.html">
         <svg class="icono" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect width="64" height="64" rx="10" fill="#1B75BC"/>
           <!-- camioneta geométrica -->
@@ -259,10 +280,11 @@
           <li>Frenos y suspensión</li>
           <li>Diagnóstico y reparación</li>
         </ul>
-      </article>
+        <span class="ver-mas">Ver más</span>
+      </a>
 
       <!-- ===== VENTANA 2 · AMPLIACIONES Y REMODELACIONES ===== -->
-      <article class="tarjeta">
+      <a class="tarjeta" href="ampliaciones.html">
         <svg class="icono" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect width="64" height="64" rx="10" fill="#1B75BC"/>
           <!-- casa con ampliación -->
@@ -282,10 +304,11 @@
           <li>Remodelación de interiores</li>
           <li>Terminaciones y obras menores</li>
         </ul>
-      </article>
+        <span class="ver-mas">Ver más</span>
+      </a>
 
       <!-- ===== VENTANA 3 · MODELACIÓN 3D Y MEMORIAS DE CÁLCULO ===== -->
-      <article class="tarjeta">
+      <a class="tarjeta" href="modelacion-3d.html">
         <svg class="icono" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect width="64" height="64" rx="10" fill="#1B75BC"/>
           <!-- cubo isométrico -->
@@ -303,7 +326,8 @@
           <li>Planos y visualización</li>
           <li>Memorias de cálculo estructural</li>
         </ul>
-      </article>
+        <span class="ver-mas">Ver más</span>
+      </a>
 
     </div>
   </main>

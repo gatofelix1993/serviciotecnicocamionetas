@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mantención de Vehículos · MANT &amp; SERVICE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Paleta corporativa (misma de index.html) */
+    :root {
+      --azul:        #1B75BC;
+      --azul-oscuro: #12507F;
+      --carbon:      #3E3E3E;
+      --gris:        #707070;
+      --gris-claro:  #D4D4D4;
+      --fondo:       #F5F7FA;
+      --blanco:      #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--fondo);
+      color: var(--carbon);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Barra superior con enlace de regreso */
+    .cabecera {
+      background: var(--azul);
+      color: var(--blanco);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 22px;
+    }
+
+    .cabecera a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .cabecera a:hover { text-decoration: underline; }
+
+    .cabecera .marca {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    /* Encabezado de la unidad */
+    .titulo-unidad {
+      background: var(--azul);
+      color: var(--blanco);
+      text-align: center;
+      padding: 34px 20px 56px;
+    }
+
+    .titulo-unidad h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); }
+
+    .curva { display: block; width: 100%; height: 50px; margin-top: -50px; }
+
+    /* Contenido */
+    .contenido {
+      flex: 1;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 20px 60px;
+    }
+
+    .contenido h2 {
+      color: var(--azul);
+      font-size: 1.4rem;
+      margin: 28px 0 12px;
+    }
+
+    .contenido p { line-height: 1.55; color: var(--carbon); }
+
+    .contenido ul { list-style: none; margin-top: 6px; }
+
+    .contenido ul li {
+      padding: 9px 0 9px 26px;
+      border-bottom: 1px solid #E7EBEF;
+      position: relative;
+    }
+
+    .contenido ul li::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 16px;
+      width: 9px;
+      height: 9px;
+      background: var(--azul);
+    }
+
+    .aviso {
+      margin-top: 34px;
+      background: #EAF2F9;
+      border-left: 4px solid var(--azul);
+      padding: 14px 18px;
+      font-size: 0.92rem;
+      color: var(--gris);
+      border-radius: 0 8px 8px 0;
+    }
+
+    footer {
+      background: var(--carbon);
+      color: var(--gris-claro);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.88rem;
+    }
+
+    footer strong { color: var(--blanco); }
+
+    a:focus-visible { outline: 3px solid var(--azul-oscuro); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+
+  <header class="cabecera">
+    <a href="index.html">&larr; Volver al inicio</a>
+    <span class="marca">MANT &amp; SERVICE</span>
+  </header>
+
+  <section class="titulo-unidad">
+    <h1>Mantención de Vehículos</h1>
+  </section>
+  <svg class="curva" viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,0 L1440,0 L1440,8 Q720,58 0,8 Z" fill="#1B75BC"/>
+  </svg>
+
+  <main class="contenido">
+
+    <h2>¿Qué hacemos?</h2>
+    <!-- EDITA AQUÍ la descripción general de la unidad -->
+    <p>Servicio mecánico para camionetas y vehículos livianos en Calama.</p>
+
+    <h2>Servicios</h2>
+    <!-- EDITA AQUÍ la lista de servicios -->
+    <ul>
+      <li>Mantención preventiva por kilometraje</li>
+      <li>Frenos y suspensión</li>
+      <li>Diagnóstico y reparación</li>
+    </ul>
+
+    <!-- AQUÍ AGREGAREMOS: descripción detallada, fotos, precios, formas de contacto, etc. -->
+    <p class="aviso">Estamos preparando el detalle completo de esta unidad. Pronto encontrarás aquí más información.</p>
+
+  </main>
+
+  <footer>
+    <strong>MANT &amp; SERVICE</strong> · Calama, Chile · 2026
+  </footer>
+
+</body>
+</html>
