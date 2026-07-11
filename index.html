@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0D1520">
   <title>NEW STANDARD SERVICE · Construcción e Ingeniería 3D · Calama</title>
   <meta name="description" content="NEW STANDARD SERVICE, Calama: diseñamos, calculamos y construimos. Ampliaciones y remodelaciones con respaldo de ingeniería: modelación 3D, memorias de cálculo y digitalización.">
 
@@ -393,12 +394,69 @@
     /* ==========================================================
        RESPONSIVE
        ========================================================== */
+
+    /* --- Tablet --- */
     @media (max-width: 900px) {
-      .portada { grid-template-columns: 1fr; }
-      .escena-caja { max-width: 380px; margin: 0 auto; }
-      .nav-links { display: none; }
-      .marca .placa img { height: 48px; }
-      .marca .nombre { font-size: 1.2rem; }
+      .portada { grid-template-columns: 1fr; gap: 34px; }
+      .escena-caja { max-width: 430px; margin: 0 auto; width: 100%; }
+      .nav { gap: 14px; }
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 0.86rem; }
+      .marca .placa img { height: 52px; }
+      .marca .nombre { font-size: 1.25rem; }
+    }
+
+    /* --- Teléfono --- */
+    @media (max-width: 640px) {
+      body::before { background-size: 40px 40px; }
+
+      /* La barra se apila: marca arriba, accesos abajo */
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px;
+      }
+      .nav-links { gap: 20px; }
+      .nav-links a[href="#unidades"] { display: none; }
+
+      .marca { gap: 14px; }
+      .marca .placa { padding: 8px 12px; border-radius: 11px; }
+      .marca .placa img { height: 44px; }
+      .marca .nombre { font-size: 1.1rem; }
+      .marca .lugar { font-size: 0.6rem; letter-spacing: 0.14em; }
+
+      .portada { padding: 12px 20px 48px; gap: 26px; }
+      .portada h1 { margin: 14px 0 16px; }
+      .escena-caja { max-width: 340px; }
+
+      /* Los rótulos del despiece serían ilegibles a este tamaño */
+      .rotulo { display: none; }
+
+      /* Botones a lo ancho: blanco de toque grande */
+      .acciones { gap: 10px; margin-top: 26px; }
+      .btn { width: 100%; text-align: center; padding: 15px 20px; }
+
+      .unidades { padding: 0 20px 56px; }
+      .titulo-seccion { flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+
+      /* Una tarjeta por fila: el mínimo de 320px desbordaba en pantallas angostas */
+      .paneles { grid-template-columns: 1fr; gap: 16px; }
+      .panel { padding: 26px 22px 24px; border-radius: 12px; }
+      .panel:hover { transform: none; }   /* en táctil no hay hover */
+
+      .chips { margin: 18px 0 22px; gap: 7px; }
+      .chips span { font-size: 0.68rem; padding: 5px 10px; }
+
+      footer { padding: 26px 20px; }
+      .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+
+    /* --- Teléfono angosto --- */
+    @media (max-width: 380px) {
+      .marca .nombre { font-size: 0.98rem; }
+      .marca .placa img { height: 40px; }
+      .escena-caja { max-width: 288px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -461,7 +519,7 @@
          muros N2 · techumbre
          ======================================================= -->
     <div class="escena-caja">
-      <svg class="escena" viewBox="110 -100 500 640" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="escena" viewBox="110 -90 575 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 
         <defs>
           <radialGradient id="halo" cx="50%" cy="50%" r="50%">
@@ -729,6 +787,24 @@
   </footer>
 
 </div>
+
+<script>
+  /* En móvil no mostramos los rótulos del despiece (serían ilegibles),
+     así que encuadramos la escena sólo sobre el edificio y se ve más grande. */
+  (function () {
+    var svg = document.querySelector('.escena');
+    if (!svg) return;
+
+    var movil = window.matchMedia('(max-width: 640px)');
+
+    function encuadrar() {
+      svg.setAttribute('viewBox', movil.matches ? '135 -90 390 600' : '110 -90 575 600');
+    }
+
+    encuadrar();
+    movil.addEventListener('change', encuadrar);
+  })();
+</script>
 
 </body>
 </html>
