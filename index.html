@@ -272,6 +272,56 @@
     .rotulo .clave-cobre { fill: var(--cobre); }
 
     /* ==========================================================
+       FRANJA DE OBRA · fotos reales bajo la portada
+       ========================================================== */
+    .obra {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px) clamp(60px, 8vw, 90px);
+    }
+
+    /* Mosaico: una foto manda y el resto la acompaña */
+    .mosaico {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 150px;
+      gap: 10px;
+    }
+
+    .mosaico a {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid var(--tinta-3);
+      display: block;
+    }
+
+    .mosaico a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .mosaico a:nth-child(4) { grid-column: span 2; }
+
+    .mosaico img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.9) contrast(1.05);
+      transition: transform 0.5s cubic-bezier(0.2,0,0.2,1), filter 0.4s ease;
+    }
+
+    .mosaico a:hover img { transform: scale(1.05); filter: saturate(1.1) contrast(1.05); }
+
+    /* Velo azul: une las fotos con la paleta del sitio */
+    .mosaico a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,21,32,0) 40%, rgba(13,21,32,0.55) 100%);
+      pointer-events: none;
+    }
+
+    .mosaico a:focus-visible { outline: 2px solid var(--cobre); outline-offset: 2px; }
+
+    /* ==========================================================
        UNIDADES DE NEGOCIO
        ========================================================== */
     .unidades {
@@ -478,6 +528,11 @@
       .chips { margin: 18px 0 22px; gap: 7px; padding-right: 58px; }
       .chips span { font-size: 0.68rem; padding: 5px 10px; }
       .panel .icono { width: 44px; height: 44px; right: 20px; bottom: 20px; }
+
+      .obra { padding: 0 20px 56px; }
+      .mosaico { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 110px; gap: 8px; }
+      .mosaico a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+      .mosaico a:nth-child(4) { grid-column: span 2; }
 
       footer { padding: 26px 20px; }
       .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -752,6 +807,37 @@
     </div>
 
   </header>
+
+  <!-- =========================================================
+       FRANJA DE OBRA · trabajos reales
+       ========================================================= -->
+  <section class="obra">
+    <div class="titulo-seccion">
+      <span class="cota">Obra ejecutada</span>
+      <h2>Trabajos terminados</h2>
+    </div>
+
+    <div class="mosaico">
+      <a href="muebleria.html">
+        <img src="galeria/muebleria-06.jpg" alt="Cocina terminada con muebles a medida" loading="lazy">
+      </a>
+      <a href="ampliaciones.html">
+        <img src="galeria/ampliaciones-01.jpg" alt="Portón de madera y estructura metálica" loading="lazy">
+      </a>
+      <a href="gasfiteria.html">
+        <img src="galeria/gasfiteria-03.jpg" alt="Baño terminado" loading="lazy">
+      </a>
+      <a href="ampliaciones.html">
+        <img src="galeria/ampliaciones-03.jpg" alt="Estructura de techumbre" loading="lazy">
+      </a>
+      <a href="muebleria.html">
+        <img src="galeria/muebleria-04.jpg" alt="Cocina con muebles a medida" loading="lazy">
+      </a>
+      <a href="gasfiteria.html">
+        <img src="galeria/gasfiteria-01.jpg" alt="Tina instalada" loading="lazy">
+      </a>
+    </div>
+  </section>
 
   <!-- =========================================================
        UNIDADES DE NEGOCIO

@@ -217,6 +217,90 @@
 
     .cierre strong { color: var(--blanco); font-weight: 600; }
 
+    /* --- Galería de trabajos --- */
+    .galeria { margin-top: 46px; }
+
+    .galeria .encabezado-galeria {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      border-top: 1px solid var(--tinta-3);
+      padding-top: 22px;
+      margin-bottom: 22px;
+    }
+
+    .galeria h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .rejilla {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .rejilla button {
+      all: unset;
+      cursor: zoom-in;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid var(--tinta-3);
+      aspect-ratio: 4 / 3;
+      display: block;
+    }
+
+    .rejilla img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.9) contrast(1.05);
+      transition: transform 0.5s cubic-bezier(0.2,0,0.2,1), filter 0.4s ease;
+    }
+
+    .rejilla button:hover img { transform: scale(1.06); filter: saturate(1.1); }
+    .rejilla button:hover { border-color: var(--azul); }
+    .rejilla button:focus-visible { outline: 2px solid var(--cobre); outline-offset: 2px; }
+
+    .lente {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(6, 11, 17, 0.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      cursor: zoom-out;
+    }
+
+    .lente.abierta { display: flex; }
+
+    .lente img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--tinta-3);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .lente .cerrar {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-family: var(--cota);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      color: var(--niebla);
+      text-transform: uppercase;
+    }
+
     /* --- Pie --- */
     footer { border-top: 1px solid var(--tinta-3); padding: 30px clamp(20px, 5vw, 56px); }
 
@@ -245,6 +329,8 @@
       .grupos { grid-template-columns: 1fr; gap: 14px; }
       .grupo { padding: 24px 20px; }
       .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .rejilla { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .lente { padding: 14px; }
     }
   </style>
 </head>
@@ -313,7 +399,31 @@
       <strong>Un solo equipo, de principio a fin.</strong> Cada ampliación puede llegar
       respaldada por su modelación 3D y su memoria de cálculo, hechas por nosotros mismos.
     </p>
+
+    <!-- ===== GALERÍA ===== -->
+    <section class="galeria">
+      <div class="encabezado-galeria">
+        <span class="cota">Obra ejecutada</span>
+        <h2>Trabajos terminados</h2>
+      </div>
+
+      <div class="rejilla">
+        <button type="button"><img src="galeria/ampliaciones-01.jpg" alt="Portón de madera con estructura metálica" loading="lazy"></button>
+        <button type="button"><img src="galeria/ampliaciones-02.jpg" alt="Escalera con peldanos de madera" loading="lazy"></button>
+        <button type="button"><img src="galeria/ampliaciones-03.jpg" alt="Estructura metálica de techumbre" loading="lazy"></button>
+        <button type="button"><img src="galeria/ampliaciones-04.jpg" alt="Portón terminado" loading="lazy"></button>
+        <button type="button"><img src="galeria/ampliaciones-05.jpg" alt="Estructura de techumbre en madera" loading="lazy"></button>
+        <button type="button"><img src="galeria/ampliaciones-06.jpg" alt="Tabiquería y terminaciones interiores" loading="lazy"></button>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Lente para ampliar las fotos -->
+  <div class="lente" id="lente">
+    <span class="cerrar">Cerrar ×</span>
+    <img src="" alt="">
+  </div>
 
   <footer>
     <div class="pie">
@@ -323,6 +433,35 @@
   </footer>
 
 </div>
+
+<script>
+  /* Ampliar una foto al hacer clic */
+  (function () {
+    var lente = document.getElementById('lente');
+    if (!lente) return;
+    var grande = lente.querySelector('img');
+
+    document.querySelectorAll('.rejilla button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.querySelector('img');
+        grande.src = f.src;
+        grande.alt = f.alt;
+        lente.classList.add('abierta');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function cerrar() {
+      lente.classList.remove('abierta');
+      document.body.style.overflow = '';
+    }
+
+    lente.addEventListener('click', cerrar);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') cerrar();
+    });
+  })();
+</script>
 
 </body>
 </html>

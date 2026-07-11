@@ -1,0 +1,8 @@
+# Fotos originales (pesadas): no van a GitHub.
+fotos-originales/
+
+# Las 263 fotos optimizadas: tampoco. Solo se sube lo elegido.
+fotos/
+
+# Hojas de contacto: solo sirven para clasificar.
+contactos/
