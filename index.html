@@ -110,7 +110,7 @@
       text-transform: uppercase;
     }
 
-    .nav-links { display: flex; gap: 26px; align-items: center; }
+    .nav-links { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
 
     .nav-links a {
       color: var(--niebla);
@@ -292,9 +292,10 @@
       letter-spacing: -0.01em;
     }
 
+    /* Dos por fila: cuatro unidades entran cómodas sin apretar los chips */
     .paneles {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 22px;
     }
 
@@ -418,7 +419,7 @@
         padding: 18px 20px;
       }
       .nav-links { gap: 20px; }
-      .nav-links a[href="#unidades"] { display: none; }
+      .nav-links a[href="gasfiteria.html"] { display: inline; }
 
       .marca { gap: 14px; }
       .marca .placa { padding: 8px 12px; border-radius: 11px; }
@@ -484,8 +485,9 @@
       </span>
     </div>
     <div class="nav-links">
-      <a href="#unidades">Servicios</a>
-      <a href="ampliaciones.html">Construcción</a>
+      <a href="ampliaciones.html">Ampliaciones</a>
+      <a href="gasfiteria.html">Gasfitería</a>
+      <a href="muebleria.html">Mueblería</a>
       <a href="modelacion-3d.html">Ingeniería 3D</a>
     </div>
   </nav>
@@ -507,7 +509,7 @@
         por ingeniería real: modelación 3D, memorias de cálculo y digitalización de proyectos.
       </p>
       <div class="acciones">
-        <a class="btn btn-solido" href="ampliaciones.html">Ver construcción</a>
+        <a class="btn btn-solido" href="#unidades">Ver servicios</a>
         <a class="btn btn-linea" href="modelacion-3d.html">Ver ingeniería 3D</a>
       </div>
     </div>
@@ -727,34 +729,68 @@
   <main class="unidades" id="unidades">
 
     <div class="titulo-seccion">
-      <span class="cota">02 unidades</span>
+      <span class="cota">04 unidades</span>
       <h2>Lo que hacemos</h2>
     </div>
 
     <div class="paneles">
 
+      <!-- ===== UNIDAD 1 · AMPLIACIONES ===== -->
       <a class="panel" href="ampliaciones.html">
-        <p class="cota">Unidad · Construcción</p>
+        <p class="cota">Unidad · Obra</p>
         <h3>Ampliaciones y remodelaciones</h3>
         <p>
           De la obra gruesa a la terminación. Ampliamos, remodelamos y reparamos
-          viviendas, con todas las especialidades resueltas por un solo equipo.
+          viviendas con todas las especialidades resueltas por un solo equipo.
         </p>
         <div class="chips">
-          <span>Obra gruesa</span>
           <span>Ampliación</span>
+          <span>Obra gruesa</span>
           <span>Tableraje de losas</span>
           <span>Techumbre</span>
           <span>Cerámica</span>
           <span>Revestimiento de muro</span>
-          <span>Gasfitería</span>
+          <span>Terminaciones</span>
           <span>Electricidad</span>
-          <span>Mueblería</span>
           <span>Soldadura</span>
         </div>
         <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
       </a>
 
+      <!-- ===== UNIDAD 2 · GASFITERÍA ===== -->
+      <a class="panel" href="gasfiteria.html">
+        <p class="cota">Unidad · Instalaciones</p>
+        <h3>Gasfitería</h3>
+        <p>
+          Agua que no llega donde debe, o llega donde no debe. Identificamos el
+          problema y lo resolvemos, desde la fuga hasta el traslado completo.
+        </p>
+        <div class="chips">
+          <span>Identificación de fugas</span>
+          <span>Cambio de monomandos</span>
+          <span>Destape de alcantarillado</span>
+          <span>Traslado de WC</span>
+          <span>Derivación de agua potable</span>
+        </div>
+        <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
+      </a>
+
+      <!-- ===== UNIDAD 3 · MUEBLERÍA ===== -->
+      <a class="panel" href="muebleria.html">
+        <p class="cota">Unidad · Carpintería</p>
+        <h3>Mueblería</h3>
+        <p>
+          Muebles hechos para el espacio que tienes, no para uno genérico.
+          Aprovechamos cada rincón disponible de la casa.
+        </p>
+        <div class="chips">
+          <span>Bajo escala</span>
+          <span>Bodega americana</span>
+        </div>
+        <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
+      </a>
+
+      <!-- ===== UNIDAD 4 · INGENIERÍA 3D ===== -->
       <a class="panel" href="modelacion-3d.html">
         <p class="cota">Unidad · Ingeniería digital</p>
         <h3>Modelación 3D y memorias de cálculo</h3>

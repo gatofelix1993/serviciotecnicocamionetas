@@ -3,171 +3,309 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modelación 3D y Memorias de Cálculo · MANT &amp; SERVICE</title>
+  <meta name="theme-color" content="#0D1520">
+  <title>Modelación 3D y memorias de cálculo · NEW STANDARD SERVICE</title>
+  <meta name="description" content="Modelación 3D, memorias de cálculo, planos y digitalización de proyectos en Calama.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Paleta corporativa (misma de index.html) */
     :root {
-      --azul:        #1B75BC;
-      --azul-oscuro: #12507F;
-      --carbon:      #3E3E3E;
-      --gris:        #707070;
-      --gris-claro:  #D4D4D4;
-      --fondo:       #F5F7FA;
-      --blanco:      #FFFFFF;
+      --tinta:      #0D1520;
+      --tinta-2:    #131F2D;
+      --tinta-3:    #1B2A3B;
+      --azul:       #1B75BC;
+      --azul-luz:   #58AEEE;
+      --cobre:      #C86A32;
+      --niebla:     #93A3B4;
+      --blanco:     #EEF4FA;
+
+      --display: 'Space Grotesk', sans-serif;
+      --texto:   'IBM Plex Sans', sans-serif;
+      --cota:    'IBM Plex Mono', monospace;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Barlow', sans-serif;
-      background: var(--fondo);
-      color: var(--carbon);
+      font-family: var(--texto);
+      background: var(--tinta);
+      color: var(--blanco);
+      -webkit-font-smoothing: antialiased;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
-    h1, h2 {
-      font-family: 'Barlow Condensed', sans-serif;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(88,174,238,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88,174,238,0.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 20%, transparent 100%);
+    }
+
+    .capa { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; }
+
+    .cota {
+      font-family: var(--cota);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      color: var(--azul-luz);
     }
 
-    .cabecera {
-      background: var(--azul);
-      color: var(--blanco);
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 22px;
+      gap: 18px;
+      padding: 20px clamp(20px, 5vw, 56px);
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    .cabecera a {
-      color: var(--blanco);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
+    .marca { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
+
+    .marca .placa {
+      background: #FFFFFF;
+      border-radius: 11px;
+      padding: 8px 12px;
+      display: flex;
+      line-height: 0;
+      box-shadow: 0 0 0 1px rgba(88,174,238,0.25), 0 8px 22px rgba(27,117,188,0.25);
     }
 
-    .cabecera a:hover { text-decoration: underline; }
+    .marca .placa img { height: 46px; width: auto; display: block; }
 
-    .cabecera .marca {
-      font-family: 'Barlow Condensed', sans-serif;
-      text-transform: uppercase;
+    .marca .nombre {
+      font-family: var(--display);
       font-weight: 700;
-      letter-spacing: 0.06em;
+      font-size: 1.15rem;
+      display: block;
+      line-height: 1.2;
     }
 
-    .titulo-unidad {
-      background: var(--azul);
-      color: var(--blanco);
-      text-align: center;
-      padding: 34px 20px 56px;
+    .marca .lugar {
+      font-family: var(--cota);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: var(--niebla);
+      text-transform: uppercase;
     }
 
-    .titulo-unidad h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); }
+    .volver {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--niebla);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
 
-    .curva { display: block; width: 100%; height: 50px; margin-top: -50px; }
+    .volver:hover { color: var(--azul-luz); }
+
+    .encabezado {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding: clamp(26px, 5vw, 50px) clamp(20px, 5vw, 56px) clamp(26px, 4vw, 40px);
+      border-bottom: 1px solid var(--tinta-3);
+    }
+
+    .encabezado h1 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      margin: 14px 0 18px;
+    }
+
+    .encabezado h1 em { font-style: normal; color: var(--azul-luz); }
+
+    .encabezado .intro {
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.62;
+      color: var(--niebla);
+      max-width: 58ch;
+    }
 
     .contenido {
-      flex: 1;
-      width: 100%;
-      max-width: 860px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 20px 20px 60px;
+      width: 100%;
+      padding: clamp(30px, 5vw, 52px) clamp(20px, 5vw, 56px) clamp(60px, 8vw, 96px);
+      flex: 1;
     }
 
-    .contenido h2 {
-      color: var(--azul);
-      font-size: 1.4rem;
-      margin: 28px 0 12px;
+    .grupos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
 
-    .contenido p { line-height: 1.55; color: var(--carbon); }
+    .grupo {
+      background: var(--tinta-2);
+      border: 1px solid var(--tinta-3);
+      border-radius: 14px;
+      padding: 28px 26px;
+    }
 
-    .contenido ul { list-style: none; margin-top: 6px; }
+    .grupo h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      margin: 10px 0 16px;
+    }
 
-    .contenido ul li {
-      padding: 9px 0 9px 26px;
-      border-bottom: 1px solid #E7EBEF;
+    .grupo ul { list-style: none; }
+
+    .grupo li {
       position: relative;
+      padding: 10px 0 10px 22px;
+      font-size: 0.96rem;
+      color: var(--blanco);
+      border-bottom: 1px solid rgba(88,174,238,0.08);
     }
 
-    .contenido ul li::before {
+    .grupo li:last-child { border-bottom: none; }
+
+    .grupo li::before {
       content: "";
       position: absolute;
-      left: 6px;
-      top: 16px;
-      width: 9px;
-      height: 9px;
-      background: var(--azul);
+      left: 2px;
+      top: 17px;
+      width: 8px;
+      height: 8px;
+      background: var(--cobre);
     }
 
-    .aviso {
+    .cierre {
       margin-top: 34px;
-      background: #EAF2F9;
-      border-left: 4px solid var(--azul);
-      padding: 14px 18px;
-      font-size: 0.92rem;
-      color: var(--gris);
-      border-radius: 0 8px 8px 0;
+      background: rgba(27,117,188,0.08);
+      border-left: 3px solid var(--azul);
+      border-radius: 0 12px 12px 0;
+      padding: 22px 24px;
+      color: var(--niebla);
+      line-height: 1.6;
+      font-size: 0.96rem;
     }
 
-    footer {
-      background: var(--carbon);
-      color: var(--gris-claro);
-      text-align: center;
-      padding: 20px;
+    .cierre strong { color: var(--blanco); font-weight: 600; }
+
+    footer { border-top: 1px solid var(--tinta-3); padding: 30px clamp(20px, 5vw, 56px); }
+
+    .pie {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--niebla);
       font-size: 0.88rem;
     }
 
-    footer strong { color: var(--blanco); }
+    .pie strong { color: var(--blanco); font-family: var(--display); }
 
-    a:focus-visible { outline: 3px solid var(--azul-oscuro); outline-offset: 2px; }
+    a:focus-visible { outline: 2px solid var(--cobre); outline-offset: 3px; }
+
+    @media (max-width: 640px) {
+      body::before { background-size: 40px 40px; }
+      .nav { padding: 18px 20px; gap: 12px; }
+      .marca .placa img { height: 40px; }
+      .marca .nombre { font-size: 1rem; }
+      .volver { font-size: 0.84rem; }
+      .grupos { grid-template-columns: 1fr; gap: 14px; }
+      .grupo { padding: 24px 20px; }
+      .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
   </style>
 </head>
 <body>
 
-  <header class="cabecera">
-    <a href="index.html">&larr; Volver al inicio</a>
-    <span class="marca">MANT &amp; SERVICE</span>
+<div class="capa">
+
+  <nav class="nav">
+    <a class="marca" href="index.html">
+      <span class="placa"><img src="empresa%20marcos%20codelco.jpeg" alt="Logo NEW STANDARD SERVICE"></span>
+      <span>
+        <span class="nombre">NEW STANDARD SERVICE</span>
+        <span class="lugar">Calama · Antofagasta</span>
+      </span>
+    </a>
+    <a class="volver" href="index.html">&larr; Volver al inicio</a>
+  </nav>
+
+  <header class="encabezado">
+    <p class="cota">Unidad · Ingeniería digital</p>
+    <h1>Modelación 3D y <em>memorias de cálculo</em></h1>
+    <p class="intro">
+      El respaldo técnico del proyecto. Lo modelamos, lo calculamos y lo dejamos
+      digitalizado antes de que se levante el primer muro: los problemas se resuelven
+      en el modelo, no en la obra.
+    </p>
   </header>
 
-  <section class="titulo-unidad">
-    <h1>Modelación 3D y Memorias de Cálculo</h1>
-  </section>
-  <svg class="curva" viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M0,0 L1440,0 L1440,8 Q720,58 0,8 Z" fill="#1B75BC"/>
-  </svg>
-
   <main class="contenido">
+    <div class="grupos">
 
-    <h2>¿Qué hacemos?</h2>
-    <!-- EDITA AQUÍ la descripción general de la unidad -->
-    <p>Ingeniería y diseño para respaldar tus proyectos.</p>
+      <div class="grupo">
+        <p class="cota">01</p>
+        <h2>Modelación 3D</h2>
+        <ul>
+          <li>Modelación 3D de proyectos</li>
+          <li>Visualización del proyecto</li>
+        </ul>
+      </div>
 
-    <h2>Servicios</h2>
-    <!-- EDITA AQUÍ la lista de servicios -->
-    <ul>
-      <li>Modelación 3D de proyectos</li>
-      <li>Planos y visualización</li>
-      <li>Memorias de cálculo estructural</li>
-      <li>Digitalización de planos y proyectos</li>
-    </ul>
+      <div class="grupo">
+        <p class="cota">02</p>
+        <h2>Memorias de cálculo</h2>
+        <ul>
+          <li>Memorias de cálculo estructural</li>
+        </ul>
+      </div>
 
-    <!-- AQUÍ AGREGAREMOS: descripción detallada, fotos, precios, formas de contacto, etc. -->
-    <p class="aviso">Estamos preparando el detalle completo de esta unidad. Pronto encontrarás aquí más información.</p>
+      <div class="grupo">
+        <p class="cota">03</p>
+        <h2>Digitalización</h2>
+        <ul>
+          <li>Digitalización de planos</li>
+          <li>Digitalización de proyectos</li>
+        </ul>
+      </div>
 
+    </div>
+
+    <p class="cierre">
+      <strong>Calcular sale más barato que rehacer.</strong> Un error detectado en el
+      modelo cuesta una corrección; el mismo error detectado en obra cuesta demolición,
+      material y plazo.
+    </p>
   </main>
 
   <footer>
-    <strong>MANT &amp; SERVICE</strong> · Calama, Chile · 2026
+    <div class="pie">
+      <span><strong>NEW STANDARD SERVICE</strong> · Calama, Chile</span>
+      <span class="cota">Construcción · Ingeniería 3D</span>
+    </div>
   </footer>
+
+</div>
 
 </body>
 </html>
