@@ -137,10 +137,26 @@
     .portada h1 {
       font-family: var(--display);
       font-weight: 700;
-      font-size: clamp(2.3rem, 4.8vw, 3.9rem);
-      line-height: 1.14;
+      font-size: clamp(2.2rem, 4.5vw, 3.7rem);
+      line-height: 1.1;
       letter-spacing: -0.02em;
       margin: 20px 0 22px;
+    }
+
+    /* Cada verbo es una fase del proyecto: entran una tras otra */
+    .portada h1 .verbo {
+      display: block;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: entrar-verbo 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .portada h1 .verbo:nth-child(1) { animation-delay: 0.10s; }
+    .portada h1 .verbo:nth-child(2) { animation-delay: 0.30s; }
+    .portada h1 .verbo:nth-child(3) { animation-delay: 0.50s; }
+
+    @keyframes entrar-verbo {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .portada h1 em {
@@ -159,7 +175,7 @@
       background: var(--cobre);
       transform: scaleX(0);
       transform-origin: left;
-      animation: trazo 0.9s cubic-bezier(0.65,0,0.35,1) 0.6s forwards;
+      animation: trazo 0.8s cubic-bezier(0.65,0,0.35,1) 1.15s forwards;
     }
 
     @keyframes trazo { to { transform: scaleX(1); } }
@@ -388,6 +404,7 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .portada h1 em::after { transform: scaleX(1); }
+      .portada h1 .verbo { opacity: 1; transform: none; }
       .rotulo { opacity: 1; }
     }
   </style>
@@ -422,9 +439,13 @@
 
     <div>
       <p class="cota">Construcción &amp; Ingeniería · Calama</p>
-      <h1>Del <em>modelo 3D</em> a la obra terminada.</h1>
+      <h1>
+        <span class="verbo">Diseñamos,</span>
+        <span class="verbo">calculamos</span>
+        <span class="verbo">y <em>construimos</em>.</span>
+      </h1>
       <p class="bajada">
-        Diseñamos, calculamos y construimos. Ampliaciones y remodelaciones respaldadas
+        Del modelo 3D a la obra terminada. Ampliaciones y remodelaciones respaldadas
         por ingeniería real: modelación 3D, memorias de cálculo y digitalización de proyectos.
       </p>
       <div class="acciones">
