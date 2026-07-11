@@ -327,16 +327,18 @@
     .panel:hover::before { transform: scaleX(1); }
     .panel:focus-visible { outline: 2px solid var(--cobre); outline-offset: 3px; }
 
-    /* Icono distintivo de cada unidad, en el mismo trazo técnico del sitio */
+    /* Icono distintivo de cada unidad, sellado en la esquina inferior derecha */
     .panel .icono {
-      width: 50px;
-      height: 50px;
-      display: block;
-      margin-bottom: 18px;
-      transition: transform 0.25s ease;
+      position: absolute;
+      right: 26px;
+      bottom: 24px;
+      width: 56px;
+      height: 56px;
+      opacity: 0.8;
+      transition: transform 0.25s ease, opacity 0.25s ease;
     }
 
-    .panel:hover .icono { transform: translateY(-2px) scale(1.04); }
+    .panel:hover .icono { opacity: 1; transform: translateY(-2px) scale(1.06); }
 
     .panel h3 {
       font-family: var(--display);
@@ -354,7 +356,14 @@
       max-width: 44ch;
     }
 
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; }
+    /* El hueco a la derecha deja respirar al icono de la esquina */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 26px;
+      padding-right: 74px;
+    }
 
     .chips span {
       font-family: var(--cota);
@@ -457,9 +466,9 @@
       .panel { padding: 26px 22px 24px; border-radius: 12px; }
       .panel:hover { transform: none; }   /* en táctil no hay hover */
 
-      .chips { margin: 18px 0 22px; gap: 7px; }
+      .chips { margin: 18px 0 22px; gap: 7px; padding-right: 58px; }
       .chips span { font-size: 0.68rem; padding: 5px 10px; }
-      .panel .icono { width: 42px; height: 42px; margin-bottom: 14px; }
+      .panel .icono { width: 44px; height: 44px; right: 20px; bottom: 20px; }
 
       footer { padding: 26px 20px; }
       .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
