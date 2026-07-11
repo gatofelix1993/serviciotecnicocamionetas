@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,700;112,800&family=Azeret+Mono:wght@400;500&family=Chivo:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -22,10 +22,13 @@
       --niebla:     #93A3B4;
       --blanco:     #EEF4FA;
 
-      --display: 'Space Grotesk', sans-serif;
-      --texto:   'IBM Plex Sans', sans-serif;
-      --cota:    'IBM Plex Mono', monospace;
+      --display: 'Archivo', sans-serif;
+      --texto:   'Chivo', sans-serif;
+      --cota:    'Azeret Mono', monospace;
     }
+
+    /* Archivo trae eje de ancho: la usamos algo expandida, como rótulo de obra */
+    h1, h2, .marca .nombre, .volver, .pie strong { font-stretch: 112%; }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -57,8 +60,8 @@
 
     .cota {
       font-family: var(--cota);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--azul-luz);
     }
@@ -99,7 +102,7 @@
     .marca .lugar {
       font-family: var(--cota);
       font-size: 0.62rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       color: var(--niebla);
       text-transform: uppercase;
     }
