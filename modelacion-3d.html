@@ -233,6 +233,13 @@
       line-height: 1;
     }
 
+    /* Dos láminas lado a lado */
+    .laminas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
     /* Marco de pantalla: la captura se ve como lo que es, una herramienta */
     .lamina {
       all: unset;
@@ -345,6 +352,7 @@
       .grupo { padding: 24px 20px; }
       .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
       .lamina .barra { font-size: 0.62rem; letter-spacing: 0.08em; padding: 9px 12px; }
+      .laminas { grid-template-columns: 1fr; gap: 12px; }
       .lente { padding: 14px; }
     }
   </style>
@@ -418,19 +426,31 @@
         <h2>Simulación estructural</h2>
       </div>
 
-      <button type="button" class="lamina">
-        <span class="barra">
-          <span class="punto"></span>
-          Análisis estático · desplazamiento · elementos finitos
-        </span>
-        <img src="galeria/SWfea.png" alt="Análisis de elementos finitos: mapa de desplazamiento sobre una biela de acero aleado" loading="lazy">
-      </button>
+      <div class="laminas">
+        <button type="button" class="lamina">
+          <span class="barra">
+            <span class="punto"></span>
+            Análisis estático · desplazamiento
+          </span>
+          <img src="galeria/SWfea.png" alt="Análisis de elementos finitos: mapa de desplazamiento sobre una pieza de acero aleado" loading="lazy">
+        </button>
+
+        <button type="button" class="lamina">
+          <span class="barra">
+            <span class="punto"></span>
+            Voladizo · carga en el extremo · desplazamiento
+          </span>
+          <img src="galeria/SWfea1.png" alt="Análisis de elementos finitos: desplazamiento de una pieza metálica en voladizo con carga aplicada en el extremo" loading="lazy">
+        </button>
+      </div>
 
       <p class="pie-foto">
         <strong>Así se ve una memoria de cálculo por dentro.</strong> Se modela la pieza, se
-        le aplica la carga real y el software resuelve cómo se deforma: el azul aguanta,
-        el rojo es donde la pieza cede. Con eso se decide el material y la sección
-        <em>antes</em> de fabricar, no después de que algo falle.
+        le aplica la carga real y el software resuelve cuánto se mueve y dónde: el azul se
+        queda quieto, el rojo es donde más cede. En el segundo caso la pieza está empotrada
+        por un lado y con peso colgando en la punta — exactamente lo que pasa en una
+        repisa, un balcón o una viga mal calculada. Con esto se decide el material y la
+        sección <em>antes</em> de fabricar, no después de que algo falle.
       </p>
     </section>
 
