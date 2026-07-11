@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MANT &amp; SERVICE · Construcción e Ingeniería 3D · Calama</title>
-  <meta name="description" content="Diseñamos, calculamos y construimos. Ampliaciones y remodelaciones con respaldo de ingeniería: modelación 3D, memorias de cálculo y digitalización. Calama, Región de Antofagasta.">
+  <title>NEW STANDARD SERVICE · Construcción e Ingeniería 3D · Calama</title>
+  <meta name="description" content="NEW STANDARD SERVICE, Calama: diseñamos, calculamos y construimos. Ampliaciones y remodelaciones con respaldo de ingeniería: modelación 3D, memorias de cálculo y digitalización.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,7 +138,7 @@
       font-family: var(--display);
       font-weight: 700;
       font-size: clamp(2.3rem, 4.8vw, 3.9rem);
-      line-height: 1.04;
+      line-height: 1.14;
       letter-spacing: -0.02em;
       margin: 20px 0 22px;
     }
@@ -150,10 +150,11 @@
       white-space: nowrap;
     }
 
+    /* Subrayado pegado a la línea base: no choca con la línea siguiente */
     .portada h1 em::after {
       content: "";
       position: absolute;
-      left: 0; right: 0; bottom: -0.08em;
+      left: 0; right: 0; bottom: 0.14em;
       height: 3px;
       background: var(--cobre);
       transform: scaleX(0);
@@ -190,33 +191,53 @@
     .btn-linea:hover { border-color: var(--cobre); color: var(--cobre); transform: translateY(-2px); }
 
     /* ==========================================================
-       AXONOMÉTRICO EXPLOSIONADO  ·  elemento firma
-       El edificio se despieza en sus capas y se vuelve a armar.
-       Cada capa es, literalmente, una de las especialidades.
+       AXONOMÉTRICO  ·  elemento firma
+       Acto 1: todo yace sobre la planta (el plano 2D).
+       Acto 2: las capas se levantan — el modelo salta a la pantalla.
+       Acto 3: el edificio se despieza y se vuelve a armar.
        ========================================================== */
     .escena-caja { position: relative; }
     .escena { width: 100%; height: auto; overflow: visible; display: block; }
 
     .capa-bim {
-      animation: despiece 15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      animation: ciclo 20s cubic-bezier(0.65, 0, 0.35, 1) infinite;
     }
 
-    @keyframes despiece {
-      0%,  10%  { transform: translateY(0); }
-      42%, 62%  { transform: translateY(var(--sep, 0px)); }
-      94%, 100% { transform: translateY(0); }
+    @keyframes ciclo {
+      /* acostado sobre el plano */
+      0%,  8%   { transform: translateY(var(--plano, 0px)); opacity: 0; }
+      13%       { opacity: 1; }
+      /* de pie: el modelo salta del plano */
+      27%, 44%  { transform: translateY(0); opacity: 1; }
+      /* despiezado */
+      56%, 68%  { transform: translateY(var(--sep, 0px)); opacity: 1; }
+      /* ensamblado de nuevo */
+      82%, 92%  { transform: translateY(0); opacity: 1; }
+      /* vuelve a caer sobre el plano */
+      99%, 100% { transform: translateY(var(--plano, 0px)); opacity: 0; }
     }
 
-    /* Las etiquetas de capa sólo aparecen con el edificio despiezado */
+    /* La planta 2D: se ve al inicio y al final del ciclo */
+    .planta-2d {
+      animation: planta 20s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    @keyframes planta {
+      0%,  10%  { opacity: 1; }
+      22%, 88%  { opacity: 0; }
+      100%      { opacity: 1; }
+    }
+
+    /* Los rótulos sólo aparecen con el edificio despiezado */
     .rotulo {
-      animation: rotular 15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      animation: rotular 20s cubic-bezier(0.65, 0, 0.35, 1) infinite;
       opacity: 0;
     }
 
     @keyframes rotular {
-      0%,  18%  { opacity: 0; }
-      42%, 62%  { opacity: 1; }
-      82%, 100% { opacity: 0; }
+      0%,  48%  { opacity: 0; }
+      58%, 68%  { opacity: 1; }
+      76%, 100% { opacity: 0; }
     }
 
     .rotulo text {
@@ -382,8 +403,8 @@
     <div class="marca">
       <span class="placa"><img src="empresa%20marcos%20codelco.jpeg" alt="Logo de la empresa"></span>
       <span>
-        <!-- NOMBRE DE LA EMPRESA — cambiar aquí (1 de 3) -->
-        <span class="nombre">MANT &amp; SERVICE</span>
+        <!-- NOMBRE DE LA EMPRESA -->
+        <span class="nombre">NEW STANDARD SERVICE</span>
         <span class="lugar">Calama · Antofagasta</span>
       </span>
     </div>
@@ -429,8 +450,8 @@
         </defs>
         <ellipse cx="330" cy="230" rx="250" ry="260" fill="url(#halo)"/>
 
-        <!-- ===== FUNDACIÓN (no se mueve: es el suelo) ===== -->
-        <g class="capa-bim" style="--sep:0px">
+        <!-- ===== TERRENO Y FUNDACIÓN (fijo: es el suelo del que todo nace) ===== -->
+        <g>
           <line x1="300.0" y1="270.0" x2="135.5" y2="365.0" stroke="#58AEEE" stroke-width="0.6" opacity="0.16"/>
           <line x1="343.3" y1="295.0" x2="178.8" y2="390.0" stroke="#58AEEE" stroke-width="0.6" opacity="0.16"/>
           <line x1="386.6" y1="320.0" x2="222.1" y2="415.0" stroke="#58AEEE" stroke-width="0.6" opacity="0.16"/>
@@ -451,8 +472,29 @@
           </g>
         </g>
 
+        <!-- ===== PLANTA 2D · el plano del que salta el modelo ===== -->
+        <g class="planta-2d">
+          <polygon points="300.0,299.5 464.5,394.5 352.0,459.5 187.4,364.5" fill="rgba(88,174,238,0.05)" stroke="#58AEEE" stroke-width="1.4"/>
+          <polygon points="300.0,304.5 455.9,394.5 352.0,454.5 196.1,364.5" fill="none" stroke="#58AEEE" stroke-width="0.8"/>
+          <polygon points="389.2,356.0 393.5,358.5 330.3,395.0 326.0,392.5" fill="rgba(88,174,238,0.18)" stroke="#58AEEE" stroke-width="0.9"/>
+          <polygon points="236.8,341.0 326.0,392.5 321.7,395.0 232.5,343.5" fill="rgba(88,174,238,0.18)" stroke="#58AEEE" stroke-width="0.9"/>
+          <polygon points="330.3,395.0 392.7,431.0 388.3,433.5 326.0,397.5" fill="rgba(88,174,238,0.18)" stroke="#58AEEE" stroke-width="0.9"/>
+          <line x1="358.9" y1="373.0" x2="363.2" y2="375.5" stroke="#C86A32" stroke-width="2.4" opacity="0.95"/>
+          <line x1="284.4" y1="368.0" x2="280.1" y2="370.5" stroke="#C86A32" stroke-width="2.4" opacity="0.95"/>
+          <line x1="362.4" y1="413.0" x2="358.0" y2="415.5" stroke="#C86A32" stroke-width="2.4" opacity="0.95"/>
+          <line x1="319.1" y1="289.0" x2="483.6" y2="384.0" stroke="#C86A32" stroke-width="0.9" opacity="0.85"/>
+          <line x1="322.5" y1="287.0" x2="315.6" y2="291.0" stroke="#C86A32" stroke-width="0.9" opacity="0.85"/>
+          <line x1="487.1" y1="382.0" x2="480.1" y2="386.0" stroke="#C86A32" stroke-width="0.9" opacity="0.85"/>
+          <text x="387.3" y="330.5" fill="#C86A32" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1">9.50</text>
+          <line x1="280.9" y1="289.0" x2="168.4" y2="354.0" stroke="#C86A32" stroke-width="0.9" opacity="0.85"/>
+          <line x1="277.5" y1="287.0" x2="284.4" y2="291.0" stroke="#C86A32" stroke-width="0.9" opacity="0.85"/>
+          <line x1="164.9" y1="352.0" x2="171.8" y2="356.0" stroke="#C86A32" stroke-width="0.9" opacity="0.85"/>
+          <text x="184.7" y="325.5" fill="#C86A32" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1">6.50</text>
+          <text x="196" y="486" fill="#93A3B4" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.6">PLANTA · ESC 1:50</text>
+        </g>
+
         <!-- ===== ESTRUCTURA · columnas y vigas (acero, en cobre) ===== -->
-        <g class="capa-bim" style="--sep:-24px">
+        <g class="capa-bim" style="--sep:-24px; --plano:12px">
           <polygon points="308.7,301.0 300.0,306.0 300.0,254.0 308.7,249.0" fill="rgba(200,106,50,0.12)" stroke="#C86A32" stroke-width="1.0"/>
           <polygon points="291.3,301.0 300.0,306.0 300.0,254.0 291.3,249.0" fill="rgba(200,106,50,0.06)" stroke="#C86A32" stroke-width="1.0"/>
           <polygon points="300.0,244.0 308.7,249.0 300.0,254.0 291.3,249.0" fill="rgba(200,106,50,0.22)" stroke="#C86A32" stroke-width="1.0"/>
@@ -490,7 +532,7 @@
         </g>
 
         <!-- ===== MUROS NIVEL 1 ===== -->
-        <g class="capa-bim" style="--sep:-58px">
+        <g class="capa-bim" style="--sep:-58px; --plano:12px">
           <polygon points="464.5,383.0 460.2,385.5 460.2,333.5 464.5,331.0" fill="rgba(88,174,238,0.07)" stroke="#58AEEE" stroke-width="1.0"/>
           <polygon points="295.7,290.5 460.2,385.5 460.2,333.5 295.7,238.5" fill="rgba(88,174,238,0.03)" stroke="#58AEEE" stroke-width="1.0"/>
           <polygon points="300.0,236.0 464.5,331.0 460.2,333.5 295.7,238.5" fill="rgba(88,174,238,0.13)" stroke="#58AEEE" stroke-width="1.0"/>
@@ -515,7 +557,7 @@
         </g>
 
         <!-- ===== LOSA DE ENTREPISO ===== -->
-        <g class="capa-bim" style="--sep:-96px">
+        <g class="capa-bim" style="--sep:-96px; --plano:72px">
           <polygon points="471.5,323.0 352.0,392.0 352.0,380.0 471.5,311.0" fill="rgba(88,174,238,0.07)" stroke="#58AEEE" stroke-width="1.2"/>
           <polygon points="180.5,293.0 352.0,392.0 352.0,380.0 180.5,281.0" fill="rgba(88,174,238,0.03)" stroke="#58AEEE" stroke-width="1.2"/>
           <polygon points="300.0,212.0 471.5,311.0 352.0,380.0 180.5,281.0" fill="rgba(88,174,238,0.13)" stroke="#58AEEE" stroke-width="1.2"/>
@@ -532,7 +574,7 @@
         </g>
 
         <!-- ===== INSTALACIONES · gasfitería y electricidad ===== -->
-        <g class="capa-bim" style="--sep:-134px">
+        <g class="capa-bim" style="--sep:-134px; --plano:92px">
           <line x1="248.0" y1="260.0" x2="352.0" y2="320.0" stroke="#58AEEE" stroke-width="5.0" opacity="0.35"/>
           <line x1="248.0" y1="260.0" x2="352.0" y2="320.0" stroke="#58AEEE" stroke-width="1.0" opacity="0.9" stroke-dasharray="6 5"/>
           <line x1="298.3" y1="227.0" x2="222.1" y2="271.0" stroke="#C86A32" stroke-width="2.0" opacity="0.95"/>
@@ -553,7 +595,7 @@
         </g>
 
         <!-- ===== MUROS NIVEL 2 ===== -->
-        <g class="capa-bim" style="--sep:-172px">
+        <g class="capa-bim" style="--sep:-172px; --plano:84px">
           <polygon points="464.5,311.0 460.2,313.5 460.2,261.5 464.5,259.0" fill="rgba(88,174,238,0.07)" stroke="#58AEEE" stroke-width="1.0"/>
           <polygon points="295.7,218.5 460.2,313.5 460.2,261.5 295.7,166.5" fill="rgba(88,174,238,0.03)" stroke="#58AEEE" stroke-width="1.0"/>
           <polygon points="300.0,164.0 464.5,259.0 460.2,261.5 295.7,166.5" fill="rgba(88,174,238,0.13)" stroke="#58AEEE" stroke-width="1.0"/>
@@ -578,7 +620,7 @@
         </g>
 
         <!-- ===== TECHUMBRE ===== -->
-        <g class="capa-bim" style="--sep:-214px">
+        <g class="capa-bim" style="--sep:-214px; --plano:138px">
           <polygon points="300.0,156.0 474.9,257.0 413.4,250.5 238.5,149.5" fill="rgba(88,174,238,0.07)" stroke="#58AEEE" stroke-width="1.2"/>
           <polygon points="177.0,227.0 352.0,328.0 413.4,250.5 238.5,149.5" fill="rgba(88,174,238,0.13)" stroke="#58AEEE" stroke-width="1.2"/>
           <polygon points="474.9,257.0 413.4,250.5 352.0,328.0" fill="rgba(88,174,238,0.09)" stroke="#58AEEE" stroke-width="1.2"/>
@@ -659,8 +701,8 @@
        ========================================================= -->
   <footer>
     <div class="pie">
-      <!-- NOMBRE DE LA EMPRESA — cambiar aquí (3 de 3) -->
-      <span><strong>MANT &amp; SERVICE</strong> · Calama, Chile</span>
+      <!-- NOMBRE DE LA EMPRESA -->
+      <span><strong>NEW STANDARD SERVICE</strong> · Calama, Chile</span>
       <span class="cota">Construcción · Ingeniería 3D</span>
     </div>
   </footer>
