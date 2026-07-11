@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,700;112,800&family=Azeret+Mono:wght@400;500&family=Chivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Azeret+Mono:wght@400;500&family=Chivo:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -22,13 +22,10 @@
       --niebla:     #93A3B4;
       --blanco:     #EEF4FA;
 
-      --display: 'Archivo', sans-serif;
+      --display: 'Big Shoulders Display', sans-serif;
       --texto:   'Chivo', sans-serif;
       --cota:    'Azeret Mono', monospace;
     }
-
-    /* Archivo trae eje de ancho: la usamos algo expandida, como rótulo de obra */
-    h1, h2, .marca .nombre, .volver, .pie strong { font-stretch: 112%; }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -92,10 +89,12 @@
 
     .marca .nombre {
       font-family: var(--display);
-      font-weight: 700;
-      font-size: 1.15rem;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: 0.02em;
       display: block;
-      line-height: 1.2;
+      line-height: 1;
+      margin-bottom: 3px;
     }
 
     .marca .lugar {
@@ -108,8 +107,10 @@
 
     .volver {
       font-family: var(--display);
-      font-weight: 600;
-      font-size: 0.92rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: var(--niebla);
       text-decoration: none;
       white-space: nowrap;
@@ -128,11 +129,12 @@
 
     .encabezado h1 {
       font-family: var(--display);
-      font-weight: 700;
-      font-size: clamp(2.1rem, 5vw, 3.4rem);
-      line-height: 1.06;
-      letter-spacing: -0.02em;
-      margin: 14px 0 18px;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 6.4vw, 5rem);
+      line-height: 0.94;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin: 16px 0 20px;
     }
 
     .encabezado h1 em { font-style: normal; color: var(--azul-luz); }
@@ -167,10 +169,12 @@
 
     .grupo h2 {
       font-family: var(--display);
-      font-weight: 600;
-      font-size: 1.25rem;
-      letter-spacing: -0.01em;
-      margin: 10px 0 16px;
+      font-weight: 700;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin: 12px 0 16px;
     }
 
     .grupo ul { list-style: none; }
@@ -222,7 +226,7 @@
       font-size: 0.88rem;
     }
 
-    .pie strong { color: var(--blanco); font-family: var(--display); }
+    .pie strong { color: var(--blanco); font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.02em; }
 
     a:focus-visible { outline: 2px solid var(--cobre); outline-offset: 3px; }
 
