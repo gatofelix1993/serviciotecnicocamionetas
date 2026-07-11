@@ -212,6 +212,111 @@
 
     .cierre strong { color: var(--blanco); font-weight: 600; }
 
+    /* --- Simulación estructural: pieza destacada --- */
+    .simulacion { margin-top: 46px; }
+
+    .simulacion .encabezado-galeria {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      border-top: 1px solid var(--tinta-3);
+      padding-top: 22px;
+      margin-bottom: 22px;
+    }
+
+    .simulacion h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    /* Marco de pantalla: la captura se ve como lo que es, una herramienta */
+    .lamina {
+      all: unset;
+      cursor: zoom-in;
+      display: block;
+      width: 100%;
+      background: var(--tinta-2);
+      border: 1px solid var(--tinta-3);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+
+    .lamina:hover { border-color: var(--azul); }
+    .lamina:focus-visible { outline: 2px solid var(--cobre); outline-offset: 3px; }
+
+    /* Barra superior tipo ventana de software */
+    .lamina .barra {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--tinta-3);
+      font-family: var(--cota);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--niebla);
+      text-transform: uppercase;
+    }
+
+    .lamina .barra .punto {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cobre);
+      flex: none;
+    }
+
+    .lamina img { width: 100%; height: auto; display: block; }
+
+    .pie-foto {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--niebla);
+      max-width: 70ch;
+    }
+
+    .pie-foto strong { color: var(--blanco); font-weight: 600; }
+
+    /* Lente: ampliar la imagen */
+    .lente {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(6, 11, 17, 0.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      cursor: zoom-out;
+    }
+
+    .lente.abierta { display: flex; }
+
+    .lente img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--tinta-3);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .lente .cerrar {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-family: var(--cota);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      color: var(--niebla);
+      text-transform: uppercase;
+    }
+
     footer { border-top: 1px solid var(--tinta-3); padding: 30px clamp(20px, 5vw, 56px); }
 
     .pie {
@@ -239,6 +344,8 @@
       .grupos { grid-template-columns: 1fr; gap: 14px; }
       .grupo { padding: 24px 20px; }
       .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .lamina .barra { font-size: 0.62rem; letter-spacing: 0.08em; padding: 9px 12px; }
+      .lente { padding: 14px; }
     }
   </style>
 </head>
@@ -303,7 +410,37 @@
       modelo cuesta una corrección; el mismo error detectado en obra cuesta demolición,
       material y plazo.
     </p>
+
+    <!-- ===== SIMULACIÓN ESTRUCTURAL ===== -->
+    <section class="simulacion">
+      <div class="encabezado-galeria">
+        <span class="cota">Análisis</span>
+        <h2>Simulación estructural</h2>
+      </div>
+
+      <button type="button" class="lamina">
+        <span class="barra">
+          <span class="punto"></span>
+          Análisis estático · desplazamiento · elementos finitos
+        </span>
+        <img src="galeria/SWfea.png" alt="Análisis de elementos finitos: mapa de desplazamiento sobre una biela de acero aleado" loading="lazy">
+      </button>
+
+      <p class="pie-foto">
+        <strong>Así se ve una memoria de cálculo por dentro.</strong> Se modela la pieza, se
+        le aplica la carga real y el software resuelve cómo se deforma: el azul aguanta,
+        el rojo es donde la pieza cede. Con eso se decide el material y la sección
+        <em>antes</em> de fabricar, no después de que algo falle.
+      </p>
+    </section>
+
   </main>
+
+  <!-- Lente para ampliar la imagen -->
+  <div class="lente" id="lente">
+    <span class="cerrar">Cerrar ×</span>
+    <img src="" alt="">
+  </div>
 
   <footer>
     <div class="pie">
@@ -313,6 +450,35 @@
   </footer>
 
 </div>
+
+<script>
+  /* Ampliar la imagen al hacer clic */
+  (function () {
+    var lente = document.getElementById('lente');
+    if (!lente) return;
+    var grande = lente.querySelector('img');
+
+    document.querySelectorAll('.lamina').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.querySelector('img');
+        grande.src = f.src;
+        grande.alt = f.alt;
+        lente.classList.add('abierta');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function cerrar() {
+      lente.classList.remove('abierta');
+      document.body.style.overflow = '';
+    }
+
+    lente.addEventListener('click', cerrar);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') cerrar();
+    });
+  })();
+</script>
 
 </body>
 </html>
