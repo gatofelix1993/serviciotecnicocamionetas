@@ -453,6 +453,365 @@
     .panel:hover .flecha { transform: translateX(6px); }
 
     /* ==========================================================
+       CONTACTO
+       ========================================================== */
+    .contacto {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px) clamp(50px, 7vw, 80px);
+    }
+
+    .contacto-caja {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+      gap: clamp(26px, 4vw, 56px);
+      background: var(--tinta-2);
+      border: 1px solid var(--tinta-3);
+      border-radius: 16px;
+      padding: clamp(28px, 4vw, 44px);
+    }
+
+    .contacto h3 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+      text-transform: uppercase;
+      line-height: 0.98;
+      letter-spacing: 0.01em;
+      margin: 12px 0 14px;
+    }
+
+    .contacto h3 em { font-style: normal; color: var(--azul-luz); }
+
+    .contacto .lead {
+      color: var(--niebla);
+      line-height: 1.6;
+      font-size: 0.98rem;
+      max-width: 40ch;
+    }
+
+    /* Datos directos, por si prefieren no llenar nada */
+    .directos { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; }
+
+    .directos a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+      width: fit-content;
+    }
+
+    .directos a:hover { color: var(--azul-luz); }
+    .directos svg { width: 18px; height: 18px; flex: none; }
+
+    /* Firma: quién contesta al otro lado */
+    .firma {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--tinta-3);
+    }
+
+    .firma-nombre {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin: 8px 0 4px;
+    }
+
+    .firma-cargo {
+      font-size: 0.9rem;
+      color: var(--cobre);
+      font-weight: 500;
+    }
+
+    /* --- Formulario --- */
+    .campo { margin-bottom: 14px; }
+
+    .campo label {
+      display: block;
+      font-family: var(--cota);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--azul-luz);
+      margin-bottom: 7px;
+    }
+
+    .campo input,
+    .campo select,
+    .campo textarea {
+      width: 100%;
+      background: var(--tinta);
+      border: 1px solid var(--tinta-3);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--blanco);
+      font-family: var(--texto);
+      font-size: 0.96rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .campo textarea { resize: vertical; min-height: 96px; }
+
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+      outline: none;
+      border-color: var(--azul);
+    }
+
+    .campo input::placeholder,
+    .campo textarea::placeholder { color: #55636F; }
+
+    .campo select option { background: var(--tinta); color: var(--blanco); }
+
+    .enviar {
+      width: 100%;
+      margin-top: 6px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--azul);
+      color: #FFFFFF;
+      border: 1px solid var(--azul);
+      border-radius: 8px;
+      padding: 14px 22px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .enviar:hover { background: var(--azul-luz); color: var(--tinta); transform: translateY(-2px); }
+    .enviar:focus-visible { outline: 2px solid var(--cobre); outline-offset: 3px; }
+    .enviar svg { width: 19px; height: 19px; }
+
+    .aviso-form {
+      margin-top: 12px;
+      font-family: var(--cota);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--niebla);
+      text-align: center;
+    }
+
+    /* ==========================================================
+       FAENA · el maestro construye, demuele y vuelve a empezar
+       Ciclo único de 32s: casa → edificio → rascacielos → castillo.
+       ========================================================== */
+    .faena {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+      overflow: hidden;
+    }
+
+    .faena svg { width: 100%; height: auto; display: block; }
+
+    .obrero { animation: recorrido 32s linear infinite; }
+    .pierna-a { animation: paso-a 32s linear infinite; }
+    .pierna-b { animation: paso-b 32s linear infinite; }
+    .brazo    { animation: golpe 0.75s ease-in-out infinite; }
+
+    /* El giro de cada miembro nace en su articulación, no en el centro */
+    .pierna-a, .pierna-b, .brazo { transform-box: view-box; }
+    .pierna-a, .pierna-b { transform-origin: 60px 245px; }
+    .brazo { transform-origin: 61px 235px; }
+
+    .pieza { transform-box: view-box; }
+
+    .casa1 { animation: casa1 32s linear infinite; }
+    .casa2 { animation: casa2 32s linear infinite; }
+    .casa3 { animation: casa3 32s linear infinite; }
+    .casa4 { animation: casa4 32s linear infinite; }
+    .casa5 { animation: casa5 32s linear infinite; }
+    .casa6 { animation: casa6 32s linear infinite; }
+
+    .edif1 { animation: edif1 32s linear infinite; }
+    .edif2 { animation: edif2 32s linear infinite; }
+    .edif3 { animation: edif3 32s linear infinite; }
+    .edif4 { animation: edif4 32s linear infinite; }
+    .edif5 { animation: edif5 32s linear infinite; }
+    .edif6 { animation: edif6 32s linear infinite; }
+    .edif7 { animation: edif7 32s linear infinite; }
+
+    .rasc1 { animation: rasc1 32s linear infinite; }
+    .rasc2 { animation: rasc2 32s linear infinite; }
+    .rasc3 { animation: rasc3 32s linear infinite; }
+    .rasc4 { animation: rasc4 32s linear infinite; }
+    .rasc5 { animation: rasc5 32s linear infinite; }
+    .rasc6 { animation: rasc6 32s linear infinite; }
+    .rasc7 { animation: rasc7 32s linear infinite; }
+    .rasc8 { animation: rasc8 32s linear infinite; }
+
+    .cast1 { animation: cast1 32s linear infinite; }
+    .cast2 { animation: cast2 32s linear infinite; }
+    .cast3 { animation: cast3 32s linear infinite; }
+    .cast4 { animation: cast4 32s linear infinite; }
+    .cast5 { animation: cast5 32s linear infinite; }
+    .cast6 { animation: cast6 32s linear infinite; }
+    .cast7 { animation: cast7 32s linear infinite; }
+    .cast8 { animation: cast8 32s linear infinite; }
+
+    .puerta {
+      animation: puerta 32s linear infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    @keyframes recorrido {
+      0% { transform: translateX(-90px); opacity: 1; }
+      8% { transform: translateX(120px); opacity: 1; }
+      78% { transform: translateX(120px); opacity: 1; }
+      86% { transform: translateX(250px); opacity: 1; }
+      88% { transform: translateX(258px); opacity: 0; }
+      99.9% { transform: translateX(258px); opacity: 0; }
+      100% { transform: translateX(-90px); opacity: 0; }
+    }
+    @keyframes paso-a {
+      0% { transform: rotate(0deg); }
+      0.42% { transform: rotate(21.4deg); }
+      0.84% { transform: rotate(19.4deg); }
+      1.26% { transform: rotate(-3.8deg); }
+      1.68% { transform: rotate(-22.9deg); }
+      2.11% { transform: rotate(-16.9deg); }
+      2.53% { transform: rotate(7.6deg); }
+      2.95% { transform: rotate(23.7deg); }
+      3.37% { transform: rotate(14deg); }
+      3.79% { transform: rotate(-11.1deg); }
+      4.21% { transform: rotate(-24deg); }
+      4.63% { transform: rotate(-10.7deg); }
+      5.05% { transform: rotate(14.3deg); }
+      5.47% { transform: rotate(23.7deg); }
+      5.89% { transform: rotate(7.1deg); }
+      6.32% { transform: rotate(-17.2deg); }
+      6.74% { transform: rotate(-22.7deg); }
+      7.16% { transform: rotate(-3.4deg); }
+      7.58% { transform: rotate(19.7deg); }
+      8% { transform: rotate(0deg); }
+      78% { transform: rotate(0deg); }
+      78.42% { transform: rotate(21.4deg); }
+      78.84% { transform: rotate(19.4deg); }
+      79.26% { transform: rotate(-3.8deg); }
+      79.68% { transform: rotate(-22.9deg); }
+      80.11% { transform: rotate(-16.9deg); }
+      80.53% { transform: rotate(7.6deg); }
+      80.95% { transform: rotate(23.7deg); }
+      81.37% { transform: rotate(14deg); }
+      81.79% { transform: rotate(-11.1deg); }
+      82.21% { transform: rotate(-24deg); }
+      82.63% { transform: rotate(-10.7deg); }
+      83.05% { transform: rotate(14.3deg); }
+      83.47% { transform: rotate(23.7deg); }
+      83.89% { transform: rotate(7.1deg); }
+      84.32% { transform: rotate(-17.2deg); }
+      84.74% { transform: rotate(-22.7deg); }
+      85.16% { transform: rotate(-3.4deg); }
+      85.58% { transform: rotate(19.7deg); }
+      86% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes paso-b {
+      0% { transform: rotate(0deg); }
+      0.42% { transform: rotate(-21.4deg); }
+      0.84% { transform: rotate(-19.4deg); }
+      1.26% { transform: rotate(3.8deg); }
+      1.68% { transform: rotate(22.9deg); }
+      2.11% { transform: rotate(16.9deg); }
+      2.53% { transform: rotate(-7.6deg); }
+      2.95% { transform: rotate(-23.7deg); }
+      3.37% { transform: rotate(-14deg); }
+      3.79% { transform: rotate(11.1deg); }
+      4.21% { transform: rotate(24deg); }
+      4.63% { transform: rotate(10.7deg); }
+      5.05% { transform: rotate(-14.3deg); }
+      5.47% { transform: rotate(-23.7deg); }
+      5.89% { transform: rotate(-7.1deg); }
+      6.32% { transform: rotate(17.2deg); }
+      6.74% { transform: rotate(22.7deg); }
+      7.16% { transform: rotate(3.4deg); }
+      7.58% { transform: rotate(-19.7deg); }
+      8% { transform: rotate(0deg); }
+      78% { transform: rotate(0deg); }
+      78.42% { transform: rotate(-21.4deg); }
+      78.84% { transform: rotate(-19.4deg); }
+      79.26% { transform: rotate(3.8deg); }
+      79.68% { transform: rotate(22.9deg); }
+      80.11% { transform: rotate(16.9deg); }
+      80.53% { transform: rotate(-7.6deg); }
+      80.95% { transform: rotate(-23.7deg); }
+      81.37% { transform: rotate(-14deg); }
+      81.79% { transform: rotate(11.1deg); }
+      82.21% { transform: rotate(24deg); }
+      82.63% { transform: rotate(10.7deg); }
+      83.05% { transform: rotate(-14.3deg); }
+      83.47% { transform: rotate(-23.7deg); }
+      83.89% { transform: rotate(-7.1deg); }
+      84.32% { transform: rotate(17.2deg); }
+      84.74% { transform: rotate(22.7deg); }
+      85.16% { transform: rotate(3.4deg); }
+      85.58% { transform: rotate(-19.7deg); }
+      86% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes golpe {
+      0% { transform: rotate(-58deg); }
+      55% { transform: rotate(10deg); }
+      70% { transform: rotate(10deg); }
+      100% { transform: rotate(-58deg); }
+    }
+    @keyframes casa1 { 0%,8.99% { opacity:0; transform:translateY(-12px);} 10.28% { opacity:1; transform:translateY(0);} 21% { opacity:1; transform:translateY(0);} 23%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes casa2 { 0%,10.82% { opacity:0; transform:translateY(-12px);} 12.12% { opacity:1; transform:translateY(0);} 21% { opacity:1; transform:translateY(0);} 23%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes casa3 { 0%,12.66% { opacity:0; transform:translateY(-12px);} 13.95% { opacity:1; transform:translateY(0);} 21% { opacity:1; transform:translateY(0);} 23%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes casa4 { 0%,14.49% { opacity:0; transform:translateY(-12px);} 15.78% { opacity:1; transform:translateY(0);} 21% { opacity:1; transform:translateY(0);} 23%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes casa5 { 0%,16.32% { opacity:0; transform:translateY(-12px);} 17.62% { opacity:1; transform:translateY(0);} 21% { opacity:1; transform:translateY(0);} 23%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes casa6 { 0%,18.16% { opacity:0; transform:translateY(-12px);} 19.45% { opacity:1; transform:translateY(0);} 21% { opacity:1; transform:translateY(0);} 23%,100% { opacity:0; transform:translateY(-12px);} }
+
+    @keyframes edif1 { 0%,24.99% { opacity:0; transform:translateY(-12px);} 26.2% { opacity:1; transform:translateY(0);} 38% { opacity:1; transform:translateY(0);} 40%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes edif2 { 0%,26.7% { opacity:0; transform:translateY(-12px);} 27.91% { opacity:1; transform:translateY(0);} 38% { opacity:1; transform:translateY(0);} 40%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes edif3 { 0%,28.42% { opacity:0; transform:translateY(-12px);} 29.63% { opacity:1; transform:translateY(0);} 38% { opacity:1; transform:translateY(0);} 40%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes edif4 { 0%,30.13% { opacity:0; transform:translateY(-12px);} 31.34% { opacity:1; transform:translateY(0);} 38% { opacity:1; transform:translateY(0);} 40%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes edif5 { 0%,31.85% { opacity:0; transform:translateY(-12px);} 33.06% { opacity:1; transform:translateY(0);} 38% { opacity:1; transform:translateY(0);} 40%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes edif6 { 0%,33.56% { opacity:0; transform:translateY(-12px);} 34.77% { opacity:1; transform:translateY(0);} 38% { opacity:1; transform:translateY(0);} 40%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes edif7 { 0%,35.28% { opacity:0; transform:translateY(-12px);} 36.49% { opacity:1; transform:translateY(0);} 38% { opacity:1; transform:translateY(0);} 40%,100% { opacity:0; transform:translateY(-12px);} }
+
+    @keyframes rasc1 { 0%,42.99% { opacity:0; transform:translateY(-12px);} 44.23% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes rasc2 { 0%,44.74% { opacity:0; transform:translateY(-12px);} 45.98% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes rasc3 { 0%,46.49% { opacity:0; transform:translateY(-12px);} 47.73% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes rasc4 { 0%,48.24% { opacity:0; transform:translateY(-12px);} 49.48% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes rasc5 { 0%,49.99% { opacity:0; transform:translateY(-12px);} 51.23% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes rasc6 { 0%,51.74% { opacity:0; transform:translateY(-12px);} 52.98% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes rasc7 { 0%,53.49% { opacity:0; transform:translateY(-12px);} 54.73% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+    @keyframes rasc8 { 0%,55.24% { opacity:0; transform:translateY(-12px);} 56.48% { opacity:1; transform:translateY(0);} 58% { opacity:1; transform:translateY(0);} 60%,100% { opacity:0; transform:translateY(-12px);} }
+
+    @keyframes cast1 { 0%,62.99% { opacity:0; transform:translateY(-12px);} 64.14% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+    @keyframes cast2 { 0%,64.61% { opacity:0; transform:translateY(-12px);} 65.76% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+    @keyframes cast3 { 0%,66.24% { opacity:0; transform:translateY(-12px);} 67.39% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+    @keyframes cast4 { 0%,67.86% { opacity:0; transform:translateY(-12px);} 69.01% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+    @keyframes cast5 { 0%,69.49% { opacity:0; transform:translateY(-12px);} 70.64% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+    @keyframes cast6 { 0%,71.11% { opacity:0; transform:translateY(-12px);} 72.26% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+    @keyframes cast7 { 0%,72.74% { opacity:0; transform:translateY(-12px);} 73.89% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+    @keyframes cast8 { 0%,74.36% { opacity:0; transform:translateY(-12px);} 75.51% { opacity:1; transform:translateY(0);} 98% { opacity:1; transform:translateY(0);} 100% { opacity:0; } }
+
+    @keyframes puerta {
+      0%, 85% { opacity: 0; transform: scaleX(0); }
+      88% { opacity: 1; transform: scaleX(0); }
+      93% { opacity: 1; transform: scaleX(1); }
+      98% { opacity: 1; transform: scaleX(1); }
+      100% { opacity: 0; transform: scaleX(1); }
+    }
+
+    /* ==========================================================
        PIE
        ========================================================== */
     footer { border-top: 1px solid var(--tinta-3); padding: 32px clamp(20px, 5vw, 56px); }
@@ -535,6 +894,9 @@
       .mosaico a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
       .mosaico a:nth-child(4) { grid-column: span 2; }
       .mosaico a:nth-child(7) { grid-column: span 2; }
+
+      .contacto { padding: 0 20px 50px; }
+      .contacto-caja { grid-template-columns: 1fr; gap: 26px; padding: 26px 22px; border-radius: 14px; }
 
       footer { padding: 26px 20px; }
       .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -978,6 +1340,222 @@
   </main>
 
   <!-- =========================================================
+       CONTACTO
+       ========================================================= -->
+  <section class="contacto" id="contacto">
+    <div class="titulo-seccion">
+      <span class="cota">Contacto</span>
+      <h2>Cuéntanos tu proyecto</h2>
+    </div>
+
+    <div class="contacto-caja">
+
+      <div>
+        <p class="cota">Presupuesto sin costo</p>
+        <h3>Del problema a la <em>solución</em></h3>
+        <p class="lead">
+          Escríbenos qué necesitas y te respondemos con una propuesta.
+          Vamos a terreno en Calama y alrededores.
+        </p>
+
+        <div class="directos">
+          <!-- DATOS DE CONTACTO -->
+          <a href="https://wa.me/56985419471" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20.5 3.5A10.4 10.4 0 0 0 3.3 16.1L2 22l6-1.3a10.4 10.4 0 0 0 12.5-17.2Z" stroke="#58AEEE" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M8.4 7.6c.3 0 .6 0 .8.5l.8 1.9c.1.3 0 .5-.2.7l-.5.6c-.2.2-.2.4-.1.6a7 7 0 0 0 3.4 3c.3.1.5 0 .7-.2l.6-.7c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.6 0 1.2-1 2.2-2.2 2.2A9.2 9.2 0 0 1 6.2 9.8c0-1.2 1-2.2 2.2-2.2Z" fill="#58AEEE"/>
+            </svg>
+            +56 9 8541 9471
+          </a>
+
+          <a href="#" onclick="return false;" style="cursor:default;">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" stroke="#C86A32" stroke-width="1.6" stroke-linejoin="round"/>
+              <circle cx="12" cy="10" r="2.6" stroke="#C86A32" stroke-width="1.6"/>
+            </svg>
+            Calama, Región de Antofagasta
+          </a>
+        </div>
+
+        <!-- Quién responde: la credencial es parte del argumento -->
+        <div class="firma">
+          <p class="cota">Te responde</p>
+          <p class="firma-nombre">Marcos Fonseca</p>
+          <p class="firma-cargo">Ingeniero Mecánico</p>
+        </div>
+      </div>
+
+      <form id="form-contacto" novalidate>
+        <div class="campo">
+          <label for="c-nombre">Nombre</label>
+          <input type="text" id="c-nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="campo">
+          <label for="c-fono">Teléfono</label>
+          <input type="tel" id="c-fono" name="fono" placeholder="+56 9 1234 5678">
+        </div>
+
+        <div class="campo">
+          <label for="c-unidad">¿Qué necesitas?</label>
+          <select id="c-unidad" name="unidad">
+            <option>Ampliaciones y remodelaciones</option>
+            <option>Gasfitería</option>
+            <option>Mueblería</option>
+            <option>Modelación 3D y memorias de cálculo</option>
+            <option>Otro / no estoy seguro</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="c-mensaje">Cuéntanos</label>
+          <textarea id="c-mensaje" name="mensaje" placeholder="Describe el trabajo: qué es, dónde y para cuándo." required></textarea>
+        </div>
+
+        <button type="submit" class="enviar">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20.5 3.5A10.4 10.4 0 0 0 3.3 16.1L2 22l6-1.3a10.4 10.4 0 0 0 12.5-17.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          </svg>
+          Enviar por WhatsApp
+        </button>
+
+        <p class="aviso-form">Se abre WhatsApp con tu mensaje ya escrito</p>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FAENA · el maestro nunca para
+       ========================================================= -->
+  <section class="faena" aria-hidden="true">
+    <svg viewBox="0 0 620 290" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- suelo -->
+      <line x1="0" y1="259" x2="620" y2="259" stroke="#58AEEE" stroke-width="1" opacity="0.28"/>
+
+      <!-- ================= CASA ================= -->
+      <g stroke="#58AEEE" stroke-width="1.6" stroke-linejoin="round">
+        <rect class="pieza casa1" x="235" y="251" width="150" height="8" fill="rgba(88,174,238,0.12)"/>
+        <rect class="pieza casa2" x="240" y="201" width="70" height="50" fill="rgba(88,174,238,0.07)"/>
+        <rect class="pieza casa3" x="310" y="201" width="70" height="50" fill="rgba(88,174,238,0.07)"/>
+        <polygon class="pieza casa4" points="232,201 310,158 388,201" fill="rgba(88,174,238,0.12)"/>
+        <rect class="pieza casa5" x="296" y="215" width="28" height="36" fill="rgba(200,106,50,0.20)" stroke="#C86A32"/>
+        <g class="pieza casa6">
+          <rect x="256" y="213" width="30" height="24" fill="rgba(88,174,238,0.16)"/>
+          <path d="M271 213 V237 M256 225 H286" stroke-width="1.1" opacity="0.7"/>
+        </g>
+      </g>
+
+      <!-- ================= EDIFICIO ================= -->
+      <g stroke="#58AEEE" stroke-width="1.6" stroke-linejoin="round">
+        <rect class="pieza edif1" x="245" y="251" width="130" height="8" fill="rgba(88,174,238,0.12)"/>
+        <rect class="pieza edif2" x="250" y="211" width="120" height="40" fill="rgba(88,174,238,0.07)"/>
+        <rect class="pieza edif3" x="250" y="171" width="120" height="40" fill="rgba(88,174,238,0.07)"/>
+        <rect class="pieza edif4" x="250" y="131" width="120" height="40" fill="rgba(88,174,238,0.07)"/>
+        <g class="pieza edif5" fill="rgba(88,174,238,0.18)" stroke-width="1.1">
+          <rect x="260" y="221" width="22" height="18"/>
+          <rect x="299" y="221" width="22" height="18"/>
+          <rect x="338" y="221" width="22" height="18"/>
+        </g>
+        <g class="pieza edif6" fill="rgba(88,174,238,0.18)" stroke-width="1.1">
+          <rect x="260" y="181" width="22" height="18"/>
+          <rect x="299" y="181" width="22" height="18"/>
+          <rect x="338" y="181" width="22" height="18"/>
+          <rect x="260" y="141" width="22" height="18"/>
+          <rect x="299" y="141" width="22" height="18"/>
+          <rect x="338" y="141" width="22" height="18"/>
+        </g>
+        <g class="pieza edif7">
+          <rect x="244" y="121" width="132" height="10" fill="rgba(88,174,238,0.14)"/>
+          <path d="M310 121 V106" stroke="#C86A32" stroke-width="2"/>
+        </g>
+      </g>
+
+      <!-- ================= RASCACIELOS ================= -->
+      <g stroke="#58AEEE" stroke-width="1.6" stroke-linejoin="round">
+        <rect class="pieza rasc1" x="255" y="251" width="110" height="8" fill="rgba(88,174,238,0.12)"/>
+        <rect class="pieza rasc2" x="262" y="201" width="96" height="50" fill="rgba(88,174,238,0.07)"/>
+        <rect class="pieza rasc3" x="266" y="156" width="88" height="45" fill="rgba(88,174,238,0.07)"/>
+        <rect class="pieza rasc4" x="270" y="111" width="80" height="45" fill="rgba(88,174,238,0.07)"/>
+        <rect class="pieza rasc5" x="276" y="71" width="68" height="40" fill="rgba(88,174,238,0.07)"/>
+        <g class="pieza rasc6" stroke-width="1" opacity="0.65">
+          <path d="M282 201 V81 M298 201 V81 M314 201 V81 M330 201 V81"/>
+          <path d="M266 176 H354 M270 131 H350 M276 91 H344 M262 226 H358"/>
+        </g>
+        <rect class="pieza rasc7" x="282" y="56" width="56" height="15" fill="rgba(88,174,238,0.14)"/>
+        <g class="pieza rasc8">
+          <path d="M310 56 V26" stroke="#C86A32" stroke-width="2"/>
+          <circle cx="310" cy="22" r="3.5" fill="#C86A32" stroke="none"/>
+        </g>
+      </g>
+
+      <!-- ================= CASTILLO ================= -->
+      <g stroke="#58AEEE" stroke-width="1.6" stroke-linejoin="round">
+        <rect class="pieza cast1" x="210" y="251" width="200" height="8" fill="rgba(88,174,238,0.12)"/>
+        <g class="pieza cast2">
+          <rect x="250" y="191" width="120" height="60" fill="rgba(88,174,238,0.07)"/>
+          <!-- vano de la puerta: queda oscuro hasta que entra -->
+          <path d="M294 251 V222 Q310 204 326 222 V251 Z" fill="#0D1520" stroke="#58AEEE" stroke-width="1.2"/>
+        </g>
+        <rect class="pieza cast3" x="215" y="161" width="42" height="90" fill="rgba(88,174,238,0.09)"/>
+        <rect class="pieza cast4" x="363" y="161" width="42" height="90" fill="rgba(88,174,238,0.09)"/>
+        <g class="pieza cast5" fill="rgba(88,174,238,0.14)">
+          <rect x="215" y="152" width="11" height="9"/>
+          <rect x="231" y="152" width="11" height="9"/>
+          <rect x="246" y="152" width="11" height="9"/>
+        </g>
+        <g class="pieza cast6" fill="rgba(88,174,238,0.14)">
+          <rect x="363" y="152" width="11" height="9"/>
+          <rect x="379" y="152" width="11" height="9"/>
+          <rect x="394" y="152" width="11" height="9"/>
+        </g>
+        <g class="pieza cast7" fill="rgba(88,174,238,0.14)">
+          <rect x="250" y="182" width="12" height="9"/>
+          <rect x="277" y="182" width="12" height="9"/>
+          <rect x="304" y="182" width="12" height="9"/>
+          <rect x="331" y="182" width="12" height="9"/>
+          <rect x="358" y="182" width="12" height="9"/>
+        </g>
+        <g class="pieza cast8">
+          <path d="M236 152 V128" stroke="#C86A32" stroke-width="1.8"/>
+          <path d="M236 130 L262 137 L236 144 Z" fill="#C86A32" stroke="#C86A32"/>
+        </g>
+        <!-- la puerta se cierra cuando el maestro entra -->
+        <path class="puerta" d="M294 251 V222 Q310 204 326 222 V251 Z"
+              fill="rgba(200,106,50,0.35)" stroke="#C86A32" stroke-width="1.6"/>
+      </g>
+
+      <!-- ================= EL MAESTRO ================= -->
+      <g class="obrero">
+        <!-- piernas -->
+        <path class="pierna-b" d="M60 245 L60 259" stroke="#58AEEE" stroke-width="2.6" stroke-linecap="round" opacity="0.55"/>
+        <path class="pierna-a" d="M60 245 L60 259" stroke="#58AEEE" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- torso -->
+        <path d="M60 245 L60 233" stroke="#58AEEE" stroke-width="4.4" stroke-linecap="round"/>
+
+        <!-- cabeza -->
+        <circle cx="60" cy="227" r="4.4" fill="rgba(88,174,238,0.18)" stroke="#58AEEE" stroke-width="1.2"/>
+
+        <!-- casco blanco -->
+        <path d="M54.4 224.2 Q60 216.5 65.6 224.2 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.8" stroke-linejoin="round"/>
+        <path d="M52.6 224.4 H68" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- brazo con martillo: mango en cobre, cabeza perpendicular al mango -->
+        <g class="brazo">
+          <path d="M61 235 L70 241" stroke="#58AEEE" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M70 241 L78 247" stroke="#C86A32" stroke-width="2.2" stroke-linecap="round"/>
+          <rect x="75.8" y="240.5" width="4.6" height="13" rx="1"
+                transform="rotate(37 78.1 247)"
+                fill="#C86A32" stroke="#C86A32" stroke-width="1"/>
+        </g>
+      </g>
+
+    </svg>
+  </section>
+
+  <!-- =========================================================
        PIE
        ========================================================= -->
   <footer>
@@ -1005,6 +1583,41 @@
 
     encuadrar();
     movil.addEventListener('change', encuadrar);
+  })();
+</script>
+
+<script>
+  /* El formulario arma el mensaje y lo abre en WhatsApp ya escrito.
+     No hace falta servidor: el sitio es estático. */
+  (function () {
+    // NUMERO DE WHATSAPP (formato internacional, sin + ni espacios)
+    var NUMERO = '56985419471';
+
+    var form = document.getElementById('form-contacto');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nombre  = document.getElementById('c-nombre').value.trim();
+      var fono    = document.getElementById('c-fono').value.trim();
+      var unidad  = document.getElementById('c-unidad').value;
+      var mensaje = document.getElementById('c-mensaje').value.trim();
+
+      if (!nombre || !mensaje) {
+        if (!nombre) document.getElementById('c-nombre').focus();
+        else document.getElementById('c-mensaje').focus();
+        return;
+      }
+
+      var texto =
+        'Hola, soy ' + nombre + '.\n' +
+        'Necesito: ' + unidad + '\n\n' +
+        mensaje +
+        (fono ? '\n\nMi teléfono: ' + fono : '');
+
+      window.open('https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(texto), '_blank');
+    });
   })();
 </script>
 
