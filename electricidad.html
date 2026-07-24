@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0D1520">
-  <title>Construcción · NEW STANDARD SERVICE</title>
-  <meta name="description" content="Construcción en Calama: ampliaciones, obra gruesa, techumbre, cerámica, revestimientos, terminaciones, mueblería a medida y soldadura.">
+  <title>Electricidad · NEW STANDARD SERVICE</title>
+  <meta name="description" content="Instalaciones eléctricas domiciliarias en Calama: instalación interior en baja tensión, alumbrado, enchufes y cerco eléctrico, con declaración SEC TE1 y TE3 por instalador autorizado.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,6 @@
       color: var(--azul-luz);
     }
 
-    /* --- Barra superior --- */
     .nav {
       display: flex;
       align-items: center;
@@ -120,7 +119,6 @@
 
     .volver:hover { color: var(--azul-luz); }
 
-    /* --- Encabezado de la unidad --- */
     .encabezado {
       max-width: 1200px;
       margin: 0 auto;
@@ -128,6 +126,16 @@
       padding: clamp(26px, 5vw, 50px) clamp(20px, 5vw, 56px) clamp(26px, 4vw, 40px);
       border-bottom: 1px solid var(--tinta-3);
     }
+
+    /* El encabezado deja espacio a la derecha para el sello */
+    .encabezado .fila {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .encabezado .texto { flex: 1; min-width: 0; }
 
     .encabezado h1 {
       font-family: var(--display);
@@ -148,7 +156,22 @@
       max-width: 58ch;
     }
 
-    /* --- Servicios agrupados --- */
+    .sello-sec {
+      width: 132px;
+      height: 132px;
+      flex-shrink: 0;
+      transform: rotate(-7deg);
+    }
+
+    .sello-sec img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      clip-path: circle(45%);
+      transform: scale(1.1);
+    }
+
     .contenido {
       max-width: 1200px;
       margin: 0 auto;
@@ -192,7 +215,6 @@
 
     .grupo li:last-child { border-bottom: none; }
 
-    /* Viñeta cuadrada: la marca de un plano, no un punto */
     .grupo li::before {
       content: "";
       position: absolute;
@@ -203,7 +225,6 @@
       background: var(--cobre);
     }
 
-    /* --- Cierre --- */
     .cierre {
       margin-top: 34px;
       background: rgba(27,117,188,0.08);
@@ -301,7 +322,6 @@
       text-transform: uppercase;
     }
 
-    /* --- Pie --- */
     footer { border-top: 1px solid var(--tinta-3); padding: 30px clamp(20px, 5vw, 56px); }
 
     .pie {
@@ -326,6 +346,8 @@
       .marca .placa img { height: 40px; }
       .marca .nombre { font-size: 1rem; }
       .volver { font-size: 0.84rem; }
+      .encabezado .fila { flex-direction: column-reverse; align-items: flex-start; gap: 10px; }
+      .sello-sec { width: 96px; height: 96px; }
       .grupos { grid-template-columns: 1fr; gap: 14px; }
       .grupo { padding: 24px 20px; }
       .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -350,14 +372,20 @@
   </nav>
 
   <header class="encabezado">
-    <p class="cota">Unidad · Obra</p>
-    <h1>Construcción y <em>remodelación</em></h1>
-    <p class="intro">
-      De la obra gruesa a la terminación, incluida la mueblería a medida. Ampliamos,
-      remodelamos y reparamos viviendas en Calama, con todas las especialidades
-      resueltas por un solo equipo: no hay que coordinar cinco maestros distintos
-      para terminar una pieza.
-    </p>
+    <div class="fila">
+      <div class="texto">
+        <p class="cota">Unidad · Instalaciones · SEC</p>
+        <h1>Electricidad</h1>
+        <p class="intro">
+          Instalaciones eléctricas interiores en baja tensión, ejecutadas por
+          personal con inscripción SEC vigente y entregadas con su declaración
+          ante la Superintendencia.
+        </p>
+      </div>
+      <div class="sello-sec">
+        <img src="galeria/selloSEC-limpio.png" alt="Instalador eléctrico autorizado SEC">
+      </div>
+    </div>
   </header>
 
   <main class="contenido">
@@ -365,55 +393,49 @@
 
       <div class="grupo">
         <p class="cota">01</p>
-        <h2>Construcción y ampliación</h2>
+        <h2>Instalación interior</h2>
         <ul>
-          <li>Ampliación de vivienda</li>
-          <li>Obra gruesa</li>
-          <li>Tableraje de losas</li>
-          <li>Techumbre</li>
+          <li>Instalación eléctrica interior en baja tensión</li>
+          <li>Canalizaciones</li>
+          <li>Puntos de luz y enchufes</li>
         </ul>
       </div>
 
       <div class="grupo">
         <p class="cota">02</p>
-        <h2>Terminaciones</h2>
+        <h2>Alumbrado y fuerza</h2>
         <ul>
-          <li>Cerámica</li>
-          <li>Revestimiento de muro</li>
-          <li>Terminaciones en general</li>
+          <li>Circuitos de alumbrado</li>
+          <li>Calefacción y fuerza motriz en baja tensión</li>
+          <li>Cambio de luminarias y artefactos</li>
+          <li>Cerco eléctrico</li>
         </ul>
       </div>
 
       <div class="grupo">
         <p class="cota">03</p>
-        <h2>Mueblería a medida</h2>
+        <h2>Declaración SEC</h2>
         <ul>
-          <li>Muebles de cocina</li>
-          <li>Mueble bajo escala</li>
-          <li>Bodega americana</li>
-          <li>Almacenamiento y orden</li>
-        </ul>
-      </div>
-
-      <div class="grupo">
-        <p class="cota">04</p>
-        <h2>Especialidades</h2>
-        <ul>
-          <li>Soldadura</li>
-          <li>Reparaciones varias</li>
+          <li>TE1 · Instalación eléctrica interior</li>
+          <li>TE3 · Cerco eléctrico</li>
         </ul>
       </div>
 
     </div>
 
     <p class="cierre">
-      <strong>Un solo equipo, de principio a fin.</strong> Cada ampliación puede llegar
-      respaldada por su modelación 3D y su memoria de cálculo, hechas por nosotros mismos.
-      Los muebles también: antes de cortar la primera plancha podemos mostrarte cómo
-      queda el mueble modelado en tu espacio real.
+      <strong>Una instalación declarada es una instalación respaldada.</strong>
+      El trabajo lo ejecuta un instalador autorizado y se declara ante la
+      Superintendencia mediante el formulario TE1, así que la obra queda
+      registrada y no como un arreglo informal. Trabajamos dentro del alcance
+      de la licencia: si un proyecto excede lo que corresponde declarar, lo
+      decimos antes de empezar.
     </p>
 
-    <!-- ===== GALERÍA ===== -->
+    <!-- ===== GALERÍA =====
+         Descomentar cuando estén las fotos de trabajos eléctricos en /galeria.
+         Se generan con armar-galeria.ps1 (bloque ELECTRICIDAD).
+
     <section class="galeria">
       <div class="encabezado-galeria">
         <span class="cota">Obra ejecutada</span>
@@ -421,20 +443,14 @@
       </div>
 
       <div class="rejilla">
-        <button type="button"><img src="galeria/ampliaciones-01.jpg" alt="Portón de madera con estructura metálica" loading="lazy"></button>
-        <button type="button"><img src="galeria/ampliaciones-02.jpg" alt="Escalera con peldanos de madera" loading="lazy"></button>
-        <button type="button"><img src="galeria/ampliaciones-03.jpg" alt="Estructura metálica de techumbre" loading="lazy"></button>
-        <button type="button"><img src="galeria/ampliaciones-04.jpg" alt="Portón terminado" loading="lazy"></button>
-        <button type="button"><img src="galeria/ampliaciones-05.jpg" alt="Estructura de techumbre en madera" loading="lazy"></button>
-        <button type="button"><img src="galeria/ampliaciones-06.jpg" alt="Tabiquería y terminaciones interiores" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-01.jpg" alt="Cocina en L con muebles a medida" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-02.jpg" alt="Cocina con muebles gris y cubierta de piedra" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-03.jpg" alt="Cocina con muebles rojos y piso de madera" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-04.jpg" alt="Cocina completa con horno empotrado" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-05.jpg" alt="Muebles de cocina con repisas abiertas" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-06.jpg" alt="Cocina terminada, vista completa" loading="lazy"></button>
+        <button type="button"><img src="galeria/electricidad-01.jpg" alt="Trabajo eléctrico terminado" loading="lazy"></button>
+        <button type="button"><img src="galeria/electricidad-02.jpg" alt="Trabajo eléctrico terminado" loading="lazy"></button>
+        <button type="button"><img src="galeria/electricidad-03.jpg" alt="Trabajo eléctrico terminado" loading="lazy"></button>
+        <button type="button"><img src="galeria/electricidad-04.jpg" alt="Trabajo eléctrico terminado" loading="lazy"></button>
       </div>
     </section>
+
+    ===== FIN GALERÍA ===== -->
 
   </main>
 

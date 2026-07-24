@@ -916,6 +916,111 @@
       .rotulo { opacity: 1; }
     }
   </style>
+
+  <style>
+    /* ==========================================================
+       SELLOS DE CERTIFICACIÓN
+       Un timbre que, al entrar en pantalla, cae y golpea la
+       tarjeta dejando su marca. SEC (cobre) en instalaciones,
+       SolidWorks (azul luz) en modelación 3D.
+       ========================================================== */
+
+    /* La tarjeta certificada deja aire a la derecha para el timbre */
+    .panel--cert > .cota,
+    .panel--cert h3,
+    .panel--cert > p { padding-right: 116px; }
+
+    .sello {
+      position: absolute;
+      top: 14px;
+      right: 12px;
+      width: 106px;
+      height: 106px;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(1.9) rotate(-19deg);
+      transform-origin: 60% 40%;
+    }
+
+    .sello svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .sello--sec { color: var(--cobre); }
+    .sello--sw  { color: var(--azul-luz); }
+
+    .sello .onda { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0.35); }
+
+    /* Al quedar sellada la tarjeta, el timbre golpea */
+    .panel--cert.sellado .sello {
+      animation: estampar 0.74s cubic-bezier(0.16, 1.28, 0.32, 1) forwards;
+    }
+    .panel--cert.sellado .sello .onda {
+      animation: onda 0.55s ease-out 0.24s forwards;
+    }
+
+    @keyframes estampar {
+      0%   { opacity: 0;   transform: scale(1.9)  rotate(-19deg); }
+      36%  { opacity: 1; }
+      52%  {               transform: scale(0.88) rotate(5deg); }
+      68%  {               transform: scale(1.06) rotate(-3deg); }
+      84%  {               transform: scale(0.98) rotate(1deg); }
+      100% { opacity: 1;   transform: scale(1)    rotate(var(--tilt, -7deg)); }
+    }
+
+    @keyframes onda {
+      0%   { opacity: 0.5; transform: scale(0.35); }
+      100% { opacity: 0;   transform: scale(1.75); }
+    }
+
+    /* Sellos: el PNG limpio ya viene sin fondo y recortado al borde,
+       así que se muestra completo, sin placa ni recorte adicional */
+    .sello--oficial {
+      display: grid;
+      place-items: center;
+    }
+
+    .sello--oficial img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* El PNG del SEC trae restos de papel rasgado en las esquinas.
+       Como el sello es circular, se recorta en círculo y se van.
+       Si se come el borde del sello, sube el porcentaje. */
+    .sello--sec img {
+      clip-path: circle(45%);
+      transform: scale(1.1);
+    }
+
+    .sello--oficial .onda2 {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--cobre);
+      opacity: 0;
+      transform: scale(0.4);
+    }
+
+    .panel--cert.sellado .sello .onda2 {
+      animation: onda 0.55s ease-out 0.24s forwards;
+    }
+
+    /* En móvil el timbre se achica para no tapar el texto */
+    @media (max-width: 640px) {
+      .sello { width: 84px; height: 84px; top: 12px; right: 10px; }
+      .panel--cert > .cota,
+      .panel--cert h3,
+      .panel--cert > p { padding-right: 92px; }
+    }
+
+    /* Sin animación: el timbre se muestra ya estampado */
+    @media (prefers-reduced-motion: reduce) {
+      .sello { opacity: 1; transform: rotate(var(--tilt, -7deg)); }
+      .sello .onda,
+      .sello .onda2 { display: none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -934,9 +1039,9 @@
       </span>
     </div>
     <div class="nav-links">
-      <a href="ampliaciones.html">Ampliaciones</a>
+      <a href="ampliaciones.html">Construcción</a>
+      <a href="electricidad.html">Electricidad</a>
       <a href="gasfiteria.html">Gasfitería</a>
-      <a href="muebleria.html">Mueblería</a>
       <a href="modelacion-3d.html">Ingeniería 3D</a>
     </div>
   </nav>
@@ -1182,7 +1287,7 @@
     </div>
 
     <div class="mosaico">
-      <a href="muebleria.html">
+      <a href="ampliaciones.html">
         <img src="galeria/muebleria-06.jpg" alt="Cocina terminada con muebles a medida" loading="lazy">
       </a>
       <a href="ampliaciones.html">
@@ -1194,7 +1299,7 @@
       <a href="ampliaciones.html">
         <img src="galeria/ampliaciones-03.jpg" alt="Estructura de techumbre" loading="lazy">
       </a>
-      <a href="muebleria.html">
+      <a href="ampliaciones.html">
         <img src="galeria/muebleria-04.jpg" alt="Cocina con muebles a medida" loading="lazy">
       </a>
       <a href="gasfiteria.html">
@@ -1218,9 +1323,9 @@
 
     <div class="paneles">
 
-      <!-- ===== UNIDAD 1 · AMPLIACIONES ===== -->
+      <!-- ===== UNIDAD 1 · CONSTRUCCIÓN ===== -->
       <a class="panel" href="ampliaciones.html">
-        <!-- Icono: casa existente + volumen nuevo en línea de corte (lo que se amplía) -->
+        <!-- Icono: casa existente + volumen nuevo en línea de corte -->
         <svg class="icono" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M8 24 L18 15 L28 24" stroke="#58AEEE" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
           <rect x="10" y="24" width="16" height="14" stroke="#58AEEE" stroke-width="1.8" fill="rgba(88,174,238,0.08)"/>
@@ -1229,10 +1334,11 @@
           <path d="M34 30 V36 M31 33 H37" stroke="#C86A32" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
         <p class="cota">Unidad · Obra</p>
-        <h3>Ampliaciones y remodelaciones</h3>
+        <h3>Construcción</h3>
         <p>
-          De la obra gruesa a la terminación. Ampliamos, remodelamos y reparamos
-          viviendas con todas las especialidades resueltas por un solo equipo.
+          De la obra gruesa a la terminación, incluida la mueblería a medida:
+          ampliamos, remodelamos y reparamos viviendas con todas las
+          especialidades resueltas por un solo equipo.
         </p>
         <div class="chips">
           <span>Ampliación</span>
@@ -1242,74 +1348,54 @@
           <span>Cerámica</span>
           <span>Revestimiento de muro</span>
           <span>Terminaciones</span>
-          <span>Electricidad</span>
+          <span>Mueblería a medida</span>
           <span>Soldadura</span>
         </div>
         <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
       </a>
 
-      <!-- ===== UNIDAD 2 · GASFITERÍA ===== -->
-      <a class="panel" href="gasfiteria.html">
-        <!-- Icono: tramo de cañería con codos y válvula (símbolo de plano de instalaciones) -->
+      <!-- ===== UNIDAD 2 · ELECTRICIDAD · certificación SEC ===== -->
+      <a class="panel panel--cert" href="electricidad.html">
+
+        <!-- TIMBRE SEC · logo oficial en galeria/selloSEC.png -->
+        <div class="sello sello--sec sello--oficial" style="--tilt:-8deg">
+          <span class="onda2"></span>
+          <img src="galeria/selloSEC-limpio.png" alt="Instalador eléctrico autorizado SEC">
+        </div>
+
+        <!-- Icono: rayo en placa (instalación eléctrica) -->
         <svg class="icono" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M7 13 H20 V29 H41" stroke="#58AEEE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="13" r="2.6" fill="#C86A32"/>
-          <circle cx="20" cy="29" r="2.6" fill="#C86A32"/>
-          <path d="M28 24 L34 29 L28 34 Z" stroke="#C86A32" stroke-width="1.6" fill="rgba(200,106,50,0.12)" stroke-linejoin="round"/>
-          <path d="M40 24 L34 29 L40 34 Z" stroke="#C86A32" stroke-width="1.6" fill="rgba(200,106,50,0.12)" stroke-linejoin="round"/>
-          <path d="M7 13 V9" stroke="#58AEEE" stroke-width="2" stroke-linecap="round"/>
-          <path d="M11 38 C11 35 14 33 14 33 C14 33 17 35 17 38 C17 40 15.7 41 14 41 C12.3 41 11 40 11 38 Z" stroke="#58AEEE" stroke-width="1.5" fill="rgba(88,174,238,0.12)"/>
+          <rect x="9" y="9" width="30" height="30" rx="6" stroke="#58AEEE" stroke-width="1.8" fill="rgba(88,174,238,0.06)"/>
+          <path d="M26 13 L17 27 L23 27 L20 35 L31 21 L25 21 Z" fill="rgba(200,106,50,0.22)" stroke="#C86A32" stroke-width="1.5" stroke-linejoin="round"/>
         </svg>
-        <p class="cota">Unidad · Instalaciones</p>
-        <h3>Gasfitería</h3>
+        <p class="cota">Unidad · Instalaciones · SEC</p>
+        <h3>Electricidad</h3>
         <p>
-          Agua que no llega donde debe, o llega donde no debe. Identificamos el
-          problema y lo resolvemos, desde la fuga hasta el traslado completo.
+          Instalaciones eléctricas interiores en baja tensión ejecutadas por
+          personal con inscripción SEC vigente, entregadas con su declaración
+          ante la Superintendencia.
         </p>
         <div class="chips">
-          <span>Identificación de fugas</span>
-          <span>Cambio de monomandos</span>
-          <span>Destape de alcantarillado</span>
-          <span>Traslado de WC</span>
-          <span>Derivación de agua potable</span>
+          <span>Instalación interior</span>
+          <span>Alumbrado</span>
+          <span>Enchufes</span>
+          <span>Cerco eléctrico</span>
+          <span>Declaración SEC</span>
+          <span>TE1</span>
+          <span>TE3</span>
         </div>
         <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
       </a>
 
-      <!-- ===== UNIDAD 3 · MUEBLERÍA ===== -->
-      <a class="panel" href="muebleria.html">
-        <!-- Icono: taladro -->
-        <svg class="icono" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- cuerpo / motor -->
-          <rect x="13" y="11" width="20" height="11" rx="3.5" fill="rgba(88,174,238,0.10)" stroke="#58AEEE" stroke-width="1.7"/>
-          <path d="M17 14 V19 M20 14 V19 M23 14 V19" stroke="#58AEEE" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/>
-          <!-- portabrocas -->
-          <path d="M33 13.5 L38 14.8 L38 18.2 L33 19.5 Z" fill="rgba(88,174,238,0.14)" stroke="#58AEEE" stroke-width="1.6" stroke-linejoin="round"/>
-          <!-- broca -->
-          <path d="M38 16.5 H45.5" stroke="#C86A32" stroke-width="2" stroke-linecap="round"/>
-          <path d="M40 15 L41.5 18 M42.5 15 L44 18" stroke="#C86A32" stroke-width="1.2" stroke-linecap="round"/>
-          <!-- empuñadura -->
-          <path d="M17 22 L24 22 L22.5 34 L15.5 34 Z" fill="rgba(88,174,238,0.06)" stroke="#58AEEE" stroke-width="1.7" stroke-linejoin="round"/>
-          <!-- gatillo -->
-          <path d="M24 24 L26.5 25 L26.5 28 L24 27 Z" fill="rgba(200,106,50,0.25)" stroke="#C86A32" stroke-width="1.4" stroke-linejoin="round"/>
-          <!-- batería -->
-          <rect x="12.5" y="34" width="12.5" height="6.5" rx="2" fill="rgba(200,106,50,0.14)" stroke="#C86A32" stroke-width="1.6"/>
-        </svg>
-        <p class="cota">Unidad · Carpintería</p>
-        <h3>Mueblería</h3>
-        <p>
-          Muebles hechos para el espacio que tienes, no para uno genérico.
-          Aprovechamos cada rincón disponible de la casa.
-        </p>
-        <div class="chips">
-          <span>Bajo escala</span>
-          <span>Bodega americana</span>
-        </div>
-        <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
-      </a>
+      <!-- ===== UNIDAD 3 · MODELACIÓN 3D · certificación SolidWorks ===== -->
+      <a class="panel panel--cert" href="modelacion-3d.html">
 
-      <!-- ===== UNIDAD 4 · INGENIERÍA 3D ===== -->
-      <a class="panel" href="modelacion-3d.html">
+        <!-- TIMBRE CSWA · mismo tratamiento que los sellos SEC · galeria/selloSCWA.png -->
+        <div class="sello sello--sw sello--oficial sello--cswa" style="--tilt:-6deg">
+          <span class="onda2"></span>
+          <img src="galeria/selloSCWA-limpio.png" alt="Certified SOLIDWORKS Associate · Mechanical Design">
+        </div>
+
         <!-- Icono: cubo de mallado con sus vértices y una cota -->
         <svg class="icono" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M22 7 L36 15 L36 31 L22 39 L8 31 L8 15 Z" stroke="#58AEEE" stroke-width="1.7" fill="rgba(88,174,238,0.06)" stroke-linejoin="round"/>
@@ -1323,15 +1409,51 @@
         <p class="cota">Unidad · Ingeniería digital</p>
         <h3>Modelación 3D y memorias de cálculo</h3>
         <p>
-          El respaldo técnico del proyecto: lo modelamos, lo calculamos y lo dejamos
-          digitalizado antes de que se levante el primer muro.
+          El respaldo técnico del proyecto: lo modelamos, lo calculamos y
+          lo dejamos digitalizado antes de que se levante el primer muro.
         </p>
         <div class="chips">
           <span>Modelación 3D</span>
           <span>Memorias de cálculo</span>
-          <span>Digitalización</span>
+          <span>Análisis FEA</span>
           <span>Planos</span>
-          <span>Visualización</span>
+          <span>Digitalización</span>
+        </div>
+        <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
+      </a>
+
+      <!-- ===== UNIDAD 4 · GASFITERÍA · certificación SEC ===== -->
+      <a class="panel panel--cert" href="gasfiteria.html">
+
+        <!-- TIMBRE SEC · logo oficial en galeria/selloSEC.png -->
+        <div class="sello sello--sec sello--oficial" style="--tilt:-5deg">
+          <span class="onda2"></span>
+          <img src="galeria/selloSEC-limpio.png" alt="Instalador de gas autorizado SEC">
+        </div>
+
+        <!-- Icono: tramo de cañería con codos y válvula -->
+        <svg class="icono" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M7 13 H20 V29 H41" stroke="#58AEEE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="13" r="2.6" fill="#C86A32"/>
+          <circle cx="20" cy="29" r="2.6" fill="#C86A32"/>
+          <path d="M28 24 L34 29 L28 34 Z" stroke="#C86A32" stroke-width="1.6" fill="rgba(200,106,50,0.12)" stroke-linejoin="round"/>
+          <path d="M40 24 L34 29 L40 34 Z" stroke="#C86A32" stroke-width="1.6" fill="rgba(200,106,50,0.12)" stroke-linejoin="round"/>
+          <path d="M7 13 V9" stroke="#58AEEE" stroke-width="2" stroke-linecap="round"/>
+          <path d="M11 38 C11 35 14 33 14 33 C14 33 17 35 17 38 C17 40 15.7 41 14 41 C12.3 41 11 40 11 38 Z" stroke="#58AEEE" stroke-width="1.5" fill="rgba(88,174,238,0.12)"/>
+        </svg>
+        <p class="cota">Unidad · Instalaciones · SEC</p>
+        <h3>Gasfitería</h3>
+        <p>
+          Agua que no llega donde debe, o llega donde no debe. Identificamos
+          el problema y lo resolvemos, desde la fuga hasta el traslado
+          completo.
+        </p>
+        <div class="chips">
+          <span>Identificación de fugas</span>
+          <span>Cambio de monomandos</span>
+          <span>Destape de alcantarillado</span>
+          <span>Traslado de WC</span>
+          <span>Derivación de agua potable</span>
         </div>
         <span class="entrar">Ver la unidad <span class="flecha">&rarr;</span></span>
       </a>
@@ -1399,9 +1521,9 @@
         <div class="campo">
           <label for="c-unidad">¿Qué necesitas?</label>
           <select id="c-unidad" name="unidad">
-            <option>Ampliaciones y remodelaciones</option>
+            <option>Construcción</option>
+            <option>Electricidad</option>
             <option>Gasfitería</option>
-            <option>Mueblería</option>
             <option>Modelación 3D y memorias de cálculo</option>
             <option>Otro / no estoy seguro</option>
           </select>
@@ -1618,6 +1740,30 @@
 
       window.open('https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(texto), '_blank');
     });
+  })();
+</script>
+
+<script>
+  /* Los timbres de certificación golpean la tarjeta al entrar en pantalla */
+  (function () {
+    var tarjetas = document.querySelectorAll('.panel--cert');
+    if (!tarjetas.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      tarjetas.forEach(function (t) { t.classList.add('sellado'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('sellado');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    tarjetas.forEach(function (t) { io.observe(t); });
   })();
 </script>
 

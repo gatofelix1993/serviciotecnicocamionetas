@@ -33,7 +33,15 @@ $seleccion = @(
     @{ n =  78; destino = "gasfiteria-01.jpg" },
     @{ n =  81; destino = "gasfiteria-02.jpg" },
     @{ n =  85; destino = "gasfiteria-03.jpg" },
-    @{ n =  87; destino = "gasfiteria-04.jpg" }
+    @{ n =  87; destino = "gasfiteria-04.jpg" },
+
+    # ---- ELECTRICIDAD (tableros, canalizaciones, puntos, empalmes) ----
+    # Reemplaza los ceros por el numero de cada foto en la carpeta "fotos"
+    # (foto-047.jpg -> n = 47). Borra las lineas que no uses.
+    @{ n =   0; destino = "electricidad-01.jpg" },
+    @{ n =   0; destino = "electricidad-02.jpg" },
+    @{ n =   0; destino = "electricidad-03.jpg" },
+    @{ n =   0; destino = "electricidad-04.jpg" }
 )
 
 $ok = 0

@@ -5,445 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0D1520">
   <title>Mueblería · NEW STANDARD SERVICE</title>
-  <meta name="description" content="Mueblería a medida en Calama: bajo escala y bodega americana, aprovechando cada espacio de la casa.">
+
+  <!-- La mueblería pasó a ser parte de la unidad Construcción.
+       Esta página queda solo como redirección para no dejar
+       enlaces antiguos rotos. -->
+  <link rel="canonical" href="ampliaciones.html">
+  <meta http-equiv="refresh" content="0; url=ampliaciones.html">
+  <meta name="robots" content="noindex, follow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Azeret+Mono:wght@400;500&family=Chivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Chivo:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --tinta:      #0D1520;
-      --tinta-2:    #131F2D;
-      --tinta-3:    #1B2A3B;
-      --azul:       #1B75BC;
-      --azul-luz:   #58AEEE;
-      --cobre:      #C86A32;
-      --niebla:     #93A3B4;
-      --blanco:     #EEF4FA;
-
-      --display: 'Big Shoulders Display', sans-serif;
-      --texto:   'Chivo', sans-serif;
-      --cota:    'Azeret Mono', monospace;
-    }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: var(--texto);
-      background: var(--tinta);
-      color: var(--blanco);
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Chivo', sans-serif;
+      background: #0D1520;
+      color: #EEF4FA;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      text-align: center;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(88,174,238,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(88,174,238,0.05) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 20%, transparent 100%);
-    }
-
-    .capa { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; }
-
-    .cota {
-      font-family: var(--cota);
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--azul-luz);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 20px clamp(20px, 5vw, 56px);
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .marca { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
-
-    .marca .placa {
-      background: #FFFFFF;
-      border-radius: 11px;
-      padding: 8px 12px;
-      display: flex;
-      line-height: 0;
-      box-shadow: 0 0 0 1px rgba(88,174,238,0.25), 0 8px 22px rgba(27,117,188,0.25);
-    }
-
-    .marca .placa img { height: 46px; width: auto; display: block; }
-
-    .marca .nombre {
-      font-family: var(--display);
+    h1 {
+      font-family: 'Big Shoulders Display', sans-serif;
       font-weight: 800;
-      font-size: 1.4rem;
-      letter-spacing: 0.02em;
-      display: block;
-      line-height: 1;
-      margin-bottom: 3px;
-    }
-
-    .marca .lugar {
-      font-family: var(--cota);
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
-      color: var(--niebla);
+      font-size: clamp(2rem, 6vw, 3rem);
       text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
     }
 
-    .volver {
-      font-family: var(--display);
+    p { color: #93A3B4; line-height: 1.6; max-width: 46ch; margin: 0 auto 24px; }
+
+    a {
+      font-family: 'Big Shoulders Display', sans-serif;
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--niebla);
+      color: #58AEEE;
       text-decoration: none;
-      white-space: nowrap;
-      transition: color 0.2s ease;
-    }
-
-    .volver:hover { color: var(--azul-luz); }
-
-    .encabezado {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      padding: clamp(26px, 5vw, 50px) clamp(20px, 5vw, 56px) clamp(26px, 4vw, 40px);
-      border-bottom: 1px solid var(--tinta-3);
-    }
-
-    .encabezado h1 {
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: clamp(2.8rem, 6.4vw, 5rem);
-      line-height: 0.94;
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
-      margin: 16px 0 20px;
-    }
-
-    .encabezado h1 em { font-style: normal; color: var(--azul-luz); }
-
-    .encabezado .intro {
-      font-size: clamp(1rem, 1.4vw, 1.1rem);
-      line-height: 1.62;
-      color: var(--niebla);
-      max-width: 58ch;
-    }
-
-    .contenido {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      padding: clamp(30px, 5vw, 52px) clamp(20px, 5vw, 56px) clamp(60px, 8vw, 96px);
-      flex: 1;
-    }
-
-    .grupos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .grupo {
-      background: var(--tinta-2);
-      border: 1px solid var(--tinta-3);
-      border-radius: 14px;
-      padding: 28px 26px;
-    }
-
-    .grupo h2 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: 1.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      line-height: 1;
-      margin: 12px 0 16px;
-    }
-
-    .grupo ul { list-style: none; }
-
-    .grupo li {
-      position: relative;
-      padding: 10px 0 10px 22px;
-      font-size: 0.96rem;
-      color: var(--blanco);
-      border-bottom: 1px solid rgba(88,174,238,0.08);
-    }
-
-    .grupo li:last-child { border-bottom: none; }
-
-    .grupo li::before {
-      content: "";
-      position: absolute;
-      left: 2px;
-      top: 17px;
-      width: 8px;
-      height: 8px;
-      background: var(--cobre);
-    }
-
-    .cierre {
-      margin-top: 34px;
-      background: rgba(27,117,188,0.08);
-      border-left: 3px solid var(--azul);
-      border-radius: 0 12px 12px 0;
-      padding: 22px 24px;
-      color: var(--niebla);
-      line-height: 1.6;
-      font-size: 0.96rem;
-    }
-
-    .cierre strong { color: var(--blanco); font-weight: 600; }
-
-    /* --- Galería de trabajos --- */
-    .galeria { margin-top: 46px; }
-
-    .galeria .encabezado-galeria {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      border-top: 1px solid var(--tinta-3);
-      padding-top: 22px;
-      margin-bottom: 22px;
-    }
-
-    .galeria h2 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: 1.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      line-height: 1;
-    }
-
-    .rejilla {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    .rejilla button {
-      all: unset;
-      cursor: zoom-in;
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      border: 1px solid var(--tinta-3);
-      aspect-ratio: 4 / 3;
-      display: block;
-    }
-
-    .rejilla img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.9) contrast(1.05);
-      transition: transform 0.5s cubic-bezier(0.2,0,0.2,1), filter 0.4s ease;
-    }
-
-    .rejilla button:hover img { transform: scale(1.06); filter: saturate(1.1); }
-    .rejilla button:hover { border-color: var(--azul); }
-    .rejilla button:focus-visible { outline: 2px solid var(--cobre); outline-offset: 2px; }
-
-    /* Lente: ampliar la foto */
-    .lente {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      background: rgba(6, 11, 17, 0.94);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 28px;
-      cursor: zoom-out;
-    }
-
-    .lente.abierta { display: flex; }
-
-    .lente img {
-      max-width: 100%;
-      max-height: 100%;
-      border-radius: 8px;
-      border: 1px solid var(--tinta-3);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-    }
-
-    .lente .cerrar {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      font-family: var(--cota);
-      font-size: 0.8rem;
-      letter-spacing: 0.14em;
-      color: var(--niebla);
-      text-transform: uppercase;
-    }
-
-    footer { border-top: 1px solid var(--tinta-3); padding: 30px clamp(20px, 5vw, 56px); }
-
-    .pie {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--niebla);
-      font-size: 0.88rem;
-    }
-
-    .pie strong { color: var(--blanco); font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.02em; }
-
-    a:focus-visible { outline: 2px solid var(--cobre); outline-offset: 3px; }
-
-    @media (max-width: 640px) {
-      body::before { background-size: 40px 40px; }
-      .nav { padding: 18px 20px; gap: 12px; }
-      .marca .placa img { height: 40px; }
-      .marca .nombre { font-size: 1rem; }
-      .volver { font-size: 0.84rem; }
-      .grupos { grid-template-columns: 1fr; gap: 14px; }
-      .grupo { padding: 24px 20px; }
-      .pie { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .rejilla { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .lente { padding: 14px; }
+      border-bottom: 2px solid #C86A32;
+      padding-bottom: 2px;
     }
   </style>
 </head>
 <body>
 
-<div class="capa">
-
-  <nav class="nav">
-    <a class="marca" href="index.html">
-      <span class="placa"><img src="empresa%20marcos%20codelco.jpeg" alt="Logo NEW STANDARD SERVICE"></span>
-      <span>
-        <span class="nombre">NEW STANDARD SERVICE</span>
-        <span class="lugar">Calama · Antofagasta</span>
-      </span>
-    </a>
-    <a class="volver" href="index.html">&larr; Volver al inicio</a>
-  </nav>
-
-  <header class="encabezado">
-    <p class="cota">Unidad · Carpintería</p>
+  <div>
     <h1>Mueblería</h1>
-    <p class="intro">
-      Muebles hechos para el espacio que tienes, no para uno genérico. Medimos,
-      diseñamos y fabricamos aprovechando los rincones que normalmente se pierden.
+    <p>
+      La mueblería a medida ahora es parte de la unidad de Construcción.
+      Te estamos llevando para allá.
     </p>
-  </header>
-
-  <main class="contenido">
-    <div class="grupos">
-
-      <div class="grupo">
-        <p class="cota">01</p>
-        <h2>Bajo escala</h2>
-        <ul>
-          <li>Mueble bajo escala a medida</li>
-          <li>Aprovechamiento del espacio bajo la escalera</li>
-        </ul>
-      </div>
-
-      <div class="grupo">
-        <p class="cota">02</p>
-        <h2>Bodega americana</h2>
-        <ul>
-          <li>Bodega americana a medida</li>
-          <li>Almacenamiento y orden</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <p class="cierre">
-      <strong>Se mide, se modela, se fabrica.</strong> Antes de cortar la primera plancha
-      podemos mostrarte el mueble modelado en 3D, para que veas cómo queda en tu espacio
-      real.
-    </p>
-
-    <!-- ===== GALERÍA ===== -->
-    <section class="galeria">
-      <div class="encabezado-galeria">
-        <span class="cota">Obra ejecutada</span>
-        <h2>Trabajos terminados</h2>
-      </div>
-
-      <div class="rejilla">
-        <button type="button"><img src="galeria/muebleria-01.jpg" alt="Cocina en L con muebles a medida" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-02.jpg" alt="Cocina con muebles gris y cubierta de piedra" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-03.jpg" alt="Cocina con muebles rojos y piso de madera" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-04.jpg" alt="Cocina completa con horno empotrado" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-05.jpg" alt="Muebles de cocina con repisas abiertas" loading="lazy"></button>
-        <button type="button"><img src="galeria/muebleria-06.jpg" alt="Cocina terminada, vista completa" loading="lazy"></button>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Lente para ampliar las fotos -->
-  <div class="lente" id="lente">
-    <span class="cerrar">Cerrar ×</span>
-    <img src="" alt="">
+    <a href="ampliaciones.html">Ir a Construcción &rarr;</a>
   </div>
-
-  <footer>
-    <div class="pie">
-      <span><strong>NEW STANDARD SERVICE</strong> · Calama, Chile</span>
-      <span class="cota">Construcción · Ingeniería 3D</span>
-    </div>
-  </footer>
-
-</div>
-
-<script>
-  /* Ampliar una foto al hacer clic */
-  (function () {
-    var lente = document.getElementById('lente');
-    if (!lente) return;
-    var grande = lente.querySelector('img');
-
-    document.querySelectorAll('.rejilla button').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var f = b.querySelector('img');
-        grande.src = f.src;
-        grande.alt = f.alt;
-        lente.classList.add('abierta');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function cerrar() {
-      lente.classList.remove('abierta');
-      document.body.style.overflow = '';
-    }
-
-    lente.addEventListener('click', cerrar);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') cerrar();
-    });
-  })();
-</script>
 
 </body>
 </html>
